@@ -6,6 +6,10 @@ miniprogram/**/*.*.js
 node_modules/
 cloudfunctions/**/node_modules/
 
+# 数据和临时脚本
+scripts/
+data/
+
 # 锁文件（可选，建议保留package.json）
 # package-lock.json
 
