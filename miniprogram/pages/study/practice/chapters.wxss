@@ -1,0 +1,90 @@
+/* pages/study/practice/chapters.wxss */
+.container {
+  min-height: 100vh;
+  background-color: #f8f4e8;
+  padding: 0;
+  margin: 0;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+}
+
+.exam-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.question-count {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8rpx 20rpx;
+  border-radius: 30rpx;
+}
+
+.chapter-list {
+  margin: 30rpx 0;
+  background: #fff;
+  border-radius: 15rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  border: 2rpx solid #D2B48C;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #8B4513;
+  padding: 30rpx 30rpx 20rpx;
+  border-bottom: 2rpx solid #D2B48C;
+}
+
+.chapter-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25rpx 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.chapter-item:last-child {
+  border-bottom: none;
+}
+
+.chapter-item:active {
+  background: #FFF8F0;
+}
+
+.chapter-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chapter-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.chapter-count {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.arrow {
+  font-size: 32rpx;
+  color: #CD853F;
+  margin-left: 20rpx;
+}

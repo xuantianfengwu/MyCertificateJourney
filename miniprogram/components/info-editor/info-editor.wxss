@@ -1,0 +1,257 @@
+/* components/info-editor/info-editor.wxss */
+.info-editor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.info-editor.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.info-editor-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.info-complete-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 24rpx;
+  padding: 60rpx 40rpx;
+  width: 85%;
+  max-width: 500rpx;
+  text-align: center;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.1);
+}
+
+.info-complete-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.info-complete-desc {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 40rpx;
+}
+
+.info-complete-section {
+  margin-bottom: 30rpx;
+  text-align: left;
+}
+
+/* 左右布局 */
+.row-layout {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.row-layout .info-complete-label {
+  width: 100rpx;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.row-layout .avatar-section,
+.row-layout .info-complete-input,
+.row-layout .gender-section,
+.row-layout .city-section {
+  flex: 1;
+}
+
+.info-complete-label {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 15rpx;
+  font-weight: 500;
+}
+
+/* 头像选择样式 */
+.avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.avatar-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  line-height: 1;
+}
+
+.avatar-btn::after {
+  border: none;
+}
+
+.avatar-preview {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  border: 2rpx solid #07C160;
+  background-color: #f9f9f9;
+}
+
+.avatar-tip {
+  font-size: 18rpx;
+  color: #07C160;
+  margin-top: 5rpx;
+}
+
+/* 输入框样式 */
+.info-complete-input {
+  width: 100%;
+  padding: 20rpx 24rpx;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #333;
+  background: #f9f9f9;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  height: 70rpx;
+  line-height: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.info-complete-input:focus {
+  border-color: #07C160;
+  background: white;
+}
+
+/* 性别选择样式 */
+.gender-section {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 15rpx;
+}
+
+.gender-option {
+  flex: 1;
+  padding: 22rpx;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #333;
+  background: #f9f9f9;
+  transition: all 0.3s;
+}
+
+.gender-option.small {
+  padding: 16rpx;
+  font-size: 22rpx;
+  border-radius: 8rpx;
+}
+
+/* 城市选择样式 */
+.city-section {
+  margin-bottom: 15rpx;
+}
+
+.city-picker {
+  width: 100%;
+  padding: 20rpx;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #333;
+  background: #f9f9f9;
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+.gender-option.active {
+  background: #07C160;
+  color: white;
+  border-color: #07C160;
+}
+
+.gender-tip {
+  font-size: 22rpx;
+  color: #666;
+  margin-top: 10rpx;
+  line-height: 1.4;
+}
+
+/* 按钮区域 */
+.info-complete-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-top: 50rpx;
+}
+
+/* 使用微信信息按钮 */
+.wechat-info-btn {
+  background-color: #1AAD19;
+  color: white;
+  font-size: 28rpx;
+  padding: 24rpx 0;
+  border-radius: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  transition: all 0.3s;
+}
+
+.wechat-info-btn::before {
+  content: "💬";
+  font-size: 32rpx;
+}
+
+.wechat-info-btn:hover {
+  background-color: #179b16;
+}
+
+/* 提交按钮 */
+.submit-btn {
+  background-color: #07C160;
+  color: white;
+  font-size: 28rpx;
+  padding: 24rpx 0;
+  border-radius: 50rpx;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #06a853;
+}
+
+/* 取消按钮 */
+.cancel-btn {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 10rpx;
+  transition: all 0.3s;
+}
+
+.cancel-btn:hover {
+  color: #666;
+}

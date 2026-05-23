@@ -1,0 +1,379 @@
+/**index.wxss**/
+
+page {
+  background-color: #f5f5f5;
+}
+
+/* 授权弹窗 */
+.auth-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.auth-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.auth-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.auth-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 20rpx;
+  padding: 60rpx 40rpx;
+  width: 80%;
+  max-width: 500rpx;
+  text-align: center;
+}
+
+.auth-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.auth-desc {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 40rpx;
+}
+
+.auth-btn {
+  background-color: #07C160;
+  color: white;
+  font-size: 30rpx;
+  padding: 25rpx 0;
+  border-radius: 50rpx;
+  margin-bottom: 20rpx;
+}
+
+.auth-cancel {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 表单样式 */
+.form-item {
+  margin-bottom: 30rpx;
+  text-align: left;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 20rpx;
+  border: 2rpx solid #f0f0f0;
+  border-radius: 10rpx;
+  font-size: 26rpx;
+  color: #333;
+  background: #f9f9f9;
+  box-sizing: border-box;
+}
+
+/* 性别选择样式 */
+.gender-options {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 10rpx;
+}
+
+.gender-option {
+  flex: 1;
+  padding: 20rpx;
+  border: 2rpx solid #f0f0f0;
+  border-radius: 10rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #333;
+  background: #f9f9f9;
+  transition: all 0.3s;
+}
+
+.gender-option.active {
+  background: #07C160;
+  color: white;
+  border-color: #07C160;
+}
+
+.gender-tip {
+  font-size: 20rpx;
+  color: #999;
+  margin-top: 5rpx;
+}
+
+/* 使用微信信息按钮 */
+.wechat-info-btn {
+  background-color: #1AAD19;
+  color: white;
+  font-size: 28rpx;
+  padding: 20rpx 0;
+  border-radius: 50rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rpx;
+}
+
+.wechat-info-btn::before {
+  content: "💬";
+  font-size: 32rpx;
+}
+
+/* 页面蒙版 */
+.page-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.page-mask.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mask-content {
+  text-align: center;
+}
+
+.mask-button {
+  background-color: #07C160;
+  color: white;
+  font-size: 28rpx;
+  padding: 18rpx 50rpx;
+  border-radius: 50rpx;
+  border: none;
+  min-width: 280rpx;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.container {
+  font-family: PingFang SC;
+  min-height: 100vh;
+  padding-bottom: 20rpx;
+}
+
+/* 页面内容区域 */
+.page-content {
+  padding: 0 20rpx;
+  margin-top: 0rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 欢迎区域 */
+.welcome-section {
+  text-align: center;
+  margin-bottom: 40rpx;
+  padding: 40rpx 0;
+  background: linear-gradient(135deg, #07C160 0%, #05A850 100%);
+  border-radius: 20rpx;
+  color: white;
+  margin-top: 20rpx;
+}
+
+.welcome-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.welcome-subtitle {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+/* 价值主张 */
+.value-section {
+  margin-bottom: 40rpx;
+}
+
+.value-cards {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+}
+
+.value-card {
+  flex: 1;
+  background: white;
+  padding: 30rpx;
+  border-radius: 15rpx;
+  text-align: center;
+  margin: 0 10rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.value-icon {
+  font-size: 48rpx;
+  margin-bottom: 15rpx;
+}
+
+.value-title {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.value-desc {
+  font-size: 20rpx;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* 核心功能 */
+.feature-section {
+  margin-bottom: 40rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding-left: 10rpx;
+  border-left: 6rpx solid #07C160;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.feature-card {
+  background: white;
+  padding: 30rpx;
+  border-radius: 15rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5rpx);
+}
+
+.feature-icon {
+  font-size: 48rpx;
+  margin-bottom: 15rpx;
+}
+
+.feature-title {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.feature-desc {
+  font-size: 20rpx;
+  color: #666;
+}
+
+/* 热门推荐 */
+.recommend-section {
+  margin-bottom: 40rpx;
+}
+
+.exam-list {
+  background: white;
+  border-radius: 15rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.exam-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.exam-item:last-child {
+  border-bottom: none;
+}
+
+.exam-info {
+  flex: 1;
+}
+
+.exam-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.exam-tags {
+  display: flex;
+  margin-bottom: 10rpx;
+}
+
+.tag {
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+  margin-right: 10rpx;
+}
+
+.tag.tax {
+  background: #E8F5E8;
+  color: #07C160;
+}
+
+.tag.level {
+  background: #E3F2FD;
+  color: #2196F3;
+}
+
+.exam-desc {
+  font-size: 22rpx;
+  color: #666;
+  line-height: 1.4;
+}
+
+.exam-arrow {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 20rpx;
+}
+

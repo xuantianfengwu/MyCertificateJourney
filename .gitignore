@@ -1,6 +1,6 @@
 # 微信小程序相关
-miniprogram/**/*.wxss
-miniprogram/**/*.*.js
+# miniprogram/**/*.wxss
+# miniprogram/**/*.*.js
 
 # 依赖目录
 node_modules/

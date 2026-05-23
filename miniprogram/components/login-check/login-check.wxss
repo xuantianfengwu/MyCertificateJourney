@@ -1,0 +1,391 @@
+/* 授权弹窗 */
+.auth-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.auth-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.auth-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.auth-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 20rpx;
+  padding: 60rpx 40rpx;
+  width: 80%;
+  max-width: 500rpx;
+  text-align: center;
+}
+
+.auth-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.auth-desc {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 40rpx;
+}
+
+.auth-btn {
+  background-color: #07C160;
+  color: white;
+  font-size: 30rpx;
+  padding: 25rpx 0;
+  border-radius: 50rpx;
+  margin-bottom: 20rpx;
+}
+
+.auth-cancel {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 表单样式 */
+.form-item {
+  margin-bottom: 30rpx;
+  text-align: left;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 20rpx;
+  border: 2rpx solid #f0f0f0;
+  border-radius: 10rpx;
+  font-size: 26rpx;
+  color: #333;
+  background: #f9f9f9;
+  box-sizing: border-box;
+}
+
+/* 性别选择样式 */
+.gender-options {
+  display: flex;
+  gap: 15rpx;
+  margin-bottom: 10rpx;
+}
+
+.gender-option {
+  flex: 1;
+  padding: 15rpx;
+  border: 2rpx solid #f0f0f0;
+  border-radius: 10rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #333;
+  background: #f9f9f9;
+  transition: all 0.3s;
+}
+
+.gender-option.active {
+  background: #07C160;
+  color: white;
+  border-color: #07C160;
+}
+
+.gender-tip {
+  font-size: 20rpx;
+  color: #999;
+  margin-top: 5rpx;
+}
+
+/* 使用微信信息按钮 */
+.wechat-info-btn {
+  background-color: #1AAD19;
+  color: white;
+  font-size: 28rpx;
+  padding: 20rpx 0;
+  border-radius: 50rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rpx;
+}
+
+.wechat-info-btn::before {
+  content: "💬";
+  font-size: 32rpx;
+}
+
+/* 头像上传样式 */
+.avatar-upload {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.avatar-preview {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 2rpx solid #f0f0f0;
+}
+
+.avatar-upload-btn {
+  padding: 15rpx 30rpx;
+  border: 2rpx solid #07C160;
+  border-radius: 50rpx;
+  color: #07C160;
+  font-size: 24rpx;
+  background: #f0fff4;
+}
+
+/* 提交按钮样式 */
+.submit-btn {
+  background-color: #07C160;
+  color: white;
+  font-size: 28rpx;
+  padding: 18rpx 0;
+  border-radius: 50rpx;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+/* 页面蒙版 */
+.page-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.page-mask.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mask-content {
+  text-align: center;
+}
+
+.mask-button {
+  background-color: #07C160;
+  color: white;
+  font-size: 28rpx;
+  padding: 18rpx 50rpx;
+  border-radius: 50rpx;
+  border: none;
+  min-width: 280rpx;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* 信息完善弹窗样式 */
+.info-complete-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 24rpx;
+  padding: 60rpx 40rpx;
+  width: 85%;
+  max-width: 500rpx;
+  text-align: center;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.1);
+}
+
+.info-complete-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.info-complete-desc {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 40rpx;
+}
+
+.info-complete-section {
+  margin-bottom: 40rpx;
+  text-align: left;
+}
+
+.info-complete-label {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 15rpx;
+  font-weight: 500;
+}
+
+/* 头像上传样式 */
+.avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 30rpx;
+}
+
+.avatar-preview {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  border: 2rpx solid #f0f0f0;
+  background-color: #f9f9f9;
+}
+
+.avatar-upload-btn {
+  padding: 20rpx 40rpx;
+  border: 2rpx solid #07C160;
+  border-radius: 50rpx;
+  color: #07C160;
+  font-size: 26rpx;
+  background: #f0fff4;
+  transition: all 0.3s;
+}
+
+.avatar-upload-btn:hover {
+  background: #e6f7ee;
+}
+
+/* 输入框样式 */
+.info-complete-input {
+  width: 100%;
+  padding: 24rpx;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #333;
+  background: #f9f9f9;
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+.info-complete-input:focus {
+  border-color: #07C160;
+  background: white;
+}
+
+/* 性别选择样式 */
+.gender-section {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 15rpx;
+}
+
+.gender-option {
+  flex: 1;
+  padding: 22rpx;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #333;
+  background: #f9f9f9;
+  transition: all 0.3s;
+}
+
+.gender-option.active {
+  background: #07C160;
+  color: white;
+  border-color: #07C160;
+}
+
+.gender-tip {
+  font-size: 22rpx;
+  color: #666;
+  margin-top: 10rpx;
+  line-height: 1.4;
+}
+
+/* 按钮区域 */
+.info-complete-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-top: 50rpx;
+}
+
+/* 使用微信信息按钮 */
+.wechat-info-btn {
+  background-color: #1AAD19;
+  color: white;
+  font-size: 28rpx;
+  padding: 24rpx 0;
+  border-radius: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  transition: all 0.3s;
+}
+
+.wechat-info-btn::before {
+  content: "💬";
+  font-size: 32rpx;
+}
+
+.wechat-info-btn:hover {
+  background-color: #179b16;
+}
+
+/* 提交按钮 */
+.submit-btn {
+  background-color: #07C160;
+  color: white;
+  font-size: 28rpx;
+  padding: 24rpx 0;
+  border-radius: 50rpx;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #06a853;
+}
+
+/* 取消按钮 */
+.cancel-btn {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 10rpx;
+  transition: all 0.3s;
+}
+
+.cancel-btn:hover {
+  color: #666;
+}

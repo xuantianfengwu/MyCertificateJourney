@@ -1,0 +1,1302 @@
+/* pages/study/index.wxss */
+
+.container {
+  background-color: #f8f4e8;
+  min-height: 100vh;
+}
+
+
+
+/* 页面内容区域 */
+.page-content {
+  padding: 0 10rpx !important;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* 页面标题 */
+.page-header {
+  text-align: center;
+  margin-bottom: 40rpx;
+  padding: 30rpx 0;
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+  border-radius: 15rpx;
+  color: white;
+  box-shadow: 0 4rpx 15rpx rgba(139, 69, 19, 0.3);
+  position: relative;
+}
+
+.intro-help {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  color: white;
+  font-size: 20rpx;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.page-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  text-shadow: 2rpx 2rpx 4rpx rgba(0, 0, 0, 0.3);
+}
+
+.page-subtitle {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+/* 章节标题 */
+.section-title {
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #8B4513;
+  margin-bottom: 20rpx;
+  padding-left: 15rpx;
+  border-left: 6rpx solid #CD853F;
+}
+
+.title-icon {
+  font-size: 36rpx;
+  margin-right: 15rpx;
+}
+
+.title-text {
+  flex: 1;
+}
+
+/* 武学征程 */
+.journey-section {
+  margin-bottom: 40rpx;
+}
+
+.journey-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.journey-card {
+  background: white;
+  border-radius: 15rpx;
+  padding: 25rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  border: 2rpx solid #D2B48C;
+  transition: all 0.3s;
+  min-height: 180rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.journey-card .exam-tags {
+  display: flex;
+  gap: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.journey-card .exam-tag {
+  font-size: 20rpx;
+  color: #333;
+}
+
+.journey-card.active {
+  border-color: #8B4513;
+  box-shadow: 0 5rpx 15rpx rgba(139, 69, 19, 0.3);
+  background: #FFF8F0;
+}
+
+/* 分割线 */
+.divider {
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent 0%, #CD853F 50%, transparent 100%);
+  margin: 30rpx 0;
+}
+
+/* 加入门派卡片样式 */
+.join-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 180rpx;
+  background: linear-gradient(135deg, #f8f4e8 0%, #fff 100%);
+  border: 2rpx dashed #D2B48C;
+}
+
+.join-content {
+  text-align: center;
+}
+
+.join-icon {
+  font-size: 48rpx;
+  margin-bottom: 10rpx;
+}
+
+.join-text {
+  font-size: 26rpx;
+  color: #CD853F;
+  font-weight: bold;
+}
+
+/* 选择门派页样式 */
+.join-section {
+  background: white;
+  border-radius: 15rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  border: 2rpx solid #D2B48C;
+}
+
+.join-header {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.join-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #8B4513;
+}
+
+/* examName 按钮列表 */
+.exam-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15rpx;
+  margin-bottom: 30rpx;
+}
+
+.exam-btn {
+  padding: 15rpx 30rpx;
+  background: #f8f4e8;
+  border: 2rpx solid #D2B48C;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  color: #8B4513;
+  transition: all 0.3s;
+}
+
+.exam-btn.active {
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+  color: white;
+  border-color: #8B4513;
+}
+
+/* examLevelName 分组 */
+.level-group {
+  margin-bottom: 25rpx;
+  padding: 20rpx;
+  background: #faf8f5;
+  border-radius: 10rpx;
+  border-left: 4rpx solid #CD853F;
+}
+
+.level-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #8B4513;
+  margin-bottom: 15rpx;
+  padding-left: 10rpx;
+}
+
+/* projectName 按钮列表 */
+.project-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15rpx;
+}
+
+.project-btn {
+  display: flex;
+  align-items: center;
+  padding: 15rpx 25rpx;
+  background: white;
+  border: 2rpx solid #D2B48C;
+  border-radius: 10rpx;
+  min-width: 200rpx;
+  transition: all 0.3s;
+}
+
+.project-btn:active {
+  background: #f8f4e8;
+  transform: scale(0.98);
+}
+
+.project-btn-icon {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+}
+
+.project-btn-text {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.project-btn.disabled {
+  background: #e0e0e0;
+  border-color: #c0c0c0;
+  opacity: 0.7;
+}
+
+.project-btn.disabled .project-btn-text {
+  color: #999;
+}
+
+.project-btn.disabled:active {
+  transform: none;
+  background: #e0e0e0;
+}
+
+/* 确认弹窗 */
+.confirm-text {
+  font-size: 30rpx;
+  color: #333;
+  text-align: center;
+  margin-bottom: 15rpx;
+}
+
+.confirm-desc {
+  font-size: 24rpx;
+  color: #666;
+  text-align: center;
+}
+
+.journey-card:hover {
+  transform: translateY(-5rpx);
+  box-shadow: 0 5rpx 15rpx rgba(0, 0, 0, 0.15);
+}
+
+.journey-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.journey-icon {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+}
+
+.journey-info {
+  flex: 1;
+}
+
+.journey-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5rpx;
+}
+
+.journey-realm {
+  font-size: 22rpx;
+  color: #CD853F;
+  font-weight: bold;
+}
+
+.journey-progress {
+  width: 100%;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 15rpx;
+  background: #f0f0f0;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+  border: 2rpx solid #D2B48C;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #CD853F 0%, #8B4513 100%);
+  border-radius: 6rpx;
+  transition: width 0.3s ease;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20rpx;
+  color: #666;
+}
+
+/* 今日修炼任务 */
+.task-section {
+  margin-bottom: 40rpx;
+}
+
+.task-card {
+  background: white;
+  border-radius: 15rpx;
+  padding: 25rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  border: 2rpx solid #D2B48C;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-checkbox {
+  margin-right: 20rpx;
+}
+
+.checkbox {
+  width: 35rpx;
+  height: 35rpx;
+  border: 3rpx solid #CD853F;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.checkbox.checked {
+  background: #8B4513;
+  border-color: #8B4513;
+}
+
+.task-content {
+  flex: 1;
+}
+
+.task-title {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5rpx;
+}
+
+.task-desc {
+  font-size: 20rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.task-reward {
+  display: flex;
+  align-items: center;
+  font-size: 18rpx;
+  color: #CD853F;
+}
+
+.reward-icon {
+  font-size: 20rpx;
+  margin-right: 5rpx;
+}
+
+.task-time {
+  font-size: 20rpx;
+  color: #999;
+  margin-left: 20rpx;
+  font-weight: bold;
+}
+
+/* 武学统计 */
+.stat-section {
+  margin-bottom: 40rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.exit-btn {
+  background: #FF4444;
+  color: white;
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 20rpx;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.exit-btn:hover {
+  background: #FF6666;
+}
+
+/* 弟子编号（门派表现标题行内） */
+.stat-section .section-title .disciple-number {
+  font-size: 20rpx;
+  color: #666;
+  font-style: italic;
+  margin-left: 20rpx;
+  white-space: nowrap;
+}
+
+/* 盟主挑战的section-header样式 */
+.achievement-section .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.achievement-section .champion-btn {
+  background: white;
+  color: #8B4513;
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 20rpx;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 2rpx solid #8B4513;
+}
+
+.achievement-section .champion-btn:hover {
+  background: #8B4513;
+  color: white;
+}
+
+/* 门派选择的section-header样式 */
+.journey-section .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.title-help {
+  color: #8B4513;
+  font-size: 20rpx;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.title-help:hover {
+  color: #A0522D;
+  text-decoration: underline;
+}
+
+/* 门派称号说明弹窗 */
+.title-help-text {
+  font-size: 20rpx;
+  color: #333;
+  margin-bottom: 20rpx;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.title-help-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20rpx;
+}
+
+.title-help-table .table-header {
+  font-weight: bold;
+  color: #8B4513;
+  border-bottom: 2rpx solid #8B4513;
+}
+
+.title-help-table .table-row {
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.title-help-table .table-row:last-child {
+  border-bottom: none;
+}
+
+.title-help-table .table-column {
+  padding: 10rpx;
+  text-align: center;
+  font-size: 18rpx;
+}
+
+.title-help-table .table-column.standard {
+  width: 40%;
+}
+
+.title-help-table .table-column.title {
+  width: 60%;
+}
+
+.title-help-table .table-row:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 15rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 2rpx solid #D2B48C;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #8B4513;
+  margin-bottom: 10rpx;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: #333;
+  margin-bottom: 5rpx;
+  font-weight: bold;
+}
+
+.stat-unit {
+  font-size: 18rpx;
+  color: #666;
+}
+
+.stat-divider {
+  width: 2rpx;
+  height: 80rpx;
+  background-color: #f0f0f0;
+  margin: 0 20rpx;
+}
+
+/* 武学工具 */
+.tool-section {
+  margin-bottom: 40rpx;
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.tool-card {
+  background: white;
+  padding: 30rpx;
+  border-radius: 15rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  border: 2rpx solid #D2B48C;
+  transition: transform 0.3s;
+}
+
+.tool-card:hover {
+  transform: translateY(-5rpx);
+  box-shadow: 0 5rpx 15rpx rgba(0, 0, 0, 0.15);
+}
+
+.tool-icon {
+  font-size: 48rpx;
+  margin-bottom: 15rpx;
+}
+
+.tool-title {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #8B4513;
+  margin-bottom: 10rpx;
+}
+
+.tool-desc {
+  font-size: 20rpx;
+  color: #666;
+}
+
+/* 武林大会 */
+.achievement-section {
+  margin-bottom: 40rpx;
+}
+
+.champion-card {
+  background: white;
+  border-radius: 15rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  border: 2rpx solid #D2B48C;
+}
+
+.champion-header {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 25rpx;
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+  color: white;
+}
+
+.champion-title {
+  font-size: 24rpx;
+  margin-right: 10rpx;
+}
+
+.champion-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  flex: 1;
+}
+
+/* 盟主挑战的按钮样式 */
+.achievement-section .champion-btn {
+  background: white;
+  color: #8B4513;
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 20rpx;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 2rpx solid #8B4513;
+}
+
+.achievement-section .champion-btn:hover {
+  background: #8B4513;
+  color: white;
+}
+
+/* 门派修炼的按钮样式 - 与盟主挑战按钮保持一致 */
+.tool-section .champion-btn {
+  background: white;
+  color: #8B4513;
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 20rpx;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 2rpx solid #8B4513;
+}
+
+.tool-section .champion-btn:hover {
+  background: #8B4513;
+  color: white;
+}
+
+.champion-btn::after {
+  border: none;
+}
+
+.champion-cover {
+  width: 100%;
+  height: 300rpx;
+  overflow: hidden;
+}
+
+.champion-cover {
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 比例 */
+  height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.champion-cover image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.champion-desc {
+  display: flex;
+  padding: 20rpx;
+  background: #FFF8F0;
+}
+
+.desc-item {
+  flex: 1;
+  text-align: center;
+  padding: 0 10rpx;
+}
+
+.desc-label {
+  font-size: 20rpx;
+  color: #666;
+  margin-bottom: 5rpx;
+}
+
+.desc-value {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #8B4513;
+}
+
+.challenge-btn {
+  background: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.challenge-btn:hover {
+  background: #555;
+}
+
+.btn-text {
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+/* 浮层样式 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 15rpx;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 5rpx 20rpx rgba(0, 0, 0, 0.3);
+  border: 2rpx solid #D2B48C;
+}
+
+/* 历届盟主弹窗专门样式 */
+.champions-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.champions-content {
+  background: white;
+  border-radius: 15rpx;
+  width: 90%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5rpx 20rpx rgba(0, 0, 0, 0.3);
+  border: 2rpx solid #D2B48C;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 25rpx;
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+  color: white;
+  border-bottom: 2rpx solid #D2B48C;
+  flex-shrink: 0;
+}
+
+.modal-body {
+  padding: 30rpx 25rpx;
+  text-align: center;
+}
+
+.modal-text {
+  font-size: 24rpx;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 30rpx;
+}
+
+.countdown {
+  font-size: 20rpx;
+  color: #FF4444;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx 25rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.cancel-btn {
+  background: #f5f5f5;
+  color: #333;
+  border: 2rpx solid #ddd;
+  border-radius: 20rpx;
+  padding: 10rpx 30rpx;
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+.confirm-btn {
+  background: #FF4444;
+  color: white;
+  border: 2rpx solid #FF4444;
+  border-radius: 20rpx;
+  padding: 10rpx 30rpx;
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+.confirm-btn:disabled {
+  background: #ccc;
+  border-color: #ccc;
+  color: #999;
+}
+
+/* 叩谢师门 */
+.thanks-section {
+  margin-bottom: 40rpx;
+  background: #f9f9f9;
+  border-radius: 15rpx;
+  padding: 20rpx;
+  border: 2rpx solid #D2B48C;
+}
+
+.thanks-content {
+  margin-top: 20rpx;
+}
+
+/* 已达到一代宗师 */
+.thanks-master {
+  text-align: center;
+  padding: 40rpx 0;
+}
+
+.master-icon {
+  font-size: 60rpx;
+  margin-bottom: 20rpx;
+}
+
+.master-text {
+  font-size: 24rpx;
+  color: #8B4513;
+  font-weight: bold;
+}
+
+/* 未达到100%进度 */
+.thanks-progress {
+  padding: 20rpx;
+}
+
+.progress-text {
+  font-size: 22rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20rpx;
+  background: #f0f0f0;
+  border-radius: 10rpx;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50 0%, #8BC34A 100%);
+  transition: width 0.5s ease;
+}
+
+.progress-info {
+  font-size: 20rpx;
+  color: #666;
+  text-align: right;
+}
+
+/* 达到100%进度，可上传证明 */
+.thanks-upload {
+  padding: 20rpx;
+}
+
+.upload-text {
+  font-size: 22rpx;
+  color: #666;
+  margin-bottom: 30rpx;
+  text-align: center;
+}
+
+.upload-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx;
+  border: 2rpx dashed #8B4513;
+  border-radius: 10rpx;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 20rpx;
+}
+
+.upload-btn:hover {
+  background: #f5f5f5;
+  border-color: #A0522D;
+}
+
+.upload-icon {
+  font-size: 60rpx;
+  margin-bottom: 10rpx;
+}
+
+.upload-label {
+  font-size: 22rpx;
+  color: #8B4513;
+  font-weight: bold;
+}
+
+.uploaded-image {
+  margin-top: 20rpx;
+  text-align: center;
+}
+
+.uploaded-image image {
+  width: 100%;
+  height: 300rpx;
+  border-radius: 10rpx;
+  border: 2rpx solid #D2B48C;
+  margin-bottom: 10rpx;
+}
+
+.upload-status {
+  font-size: 20rpx;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+/* 上传图片预览弹窗 */
+.preview-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx;
+  border: 2rpx dashed #8B4513;
+  border-radius: 10rpx;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 30rpx 0;
+}
+
+.preview-upload:hover {
+  background: #f5f5f5;
+  border-color: #A0522D;
+}
+
+.preview-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.preview-label {
+  font-size: 24rpx;
+  color: #8B4513;
+  font-weight: bold;
+}
+
+.preview-image {
+  margin: 30rpx 0;
+  text-align: center;
+}
+
+.preview-image image {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 10rpx;
+  border: 2rpx solid #D2B48C;
+}
+
+.preview-text {
+  font-size: 24rpx;
+  color: #333;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.modal-title {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.modal-close {
+  font-size: 36rpx;
+  cursor: pointer;
+}
+
+.champions-table {
+  padding: 20rpx;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.table-header {
+  display: flex;
+  background: #f5f5f5;
+  padding: 12rpx;
+  border-radius: 10rpx;
+  margin-bottom: 10rpx;
+  font-weight: bold;
+  color: #8B4513;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.table-row {
+  display: flex;
+  padding: 12rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-column {
+  flex: 1;
+  text-align: center;
+}
+
+.table-column.date {
+  flex: 0.8;
+}
+
+.table-column.name {
+  flex: 1;
+}
+
+.table-column.images {
+  flex: 2;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10rpx;
+  margin-top: 10rpx;
+}
+
+.image-item {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 5rpx;
+  border: 2rpx solid #ddd;
+}
+
+.image-item.golden {
+  border: 3rpx solid #FFD700;
+  box-shadow: 0 0 10rpx rgba(255, 215, 0, 0.5);
+}
+
+.image-item.video-item {
+  position: relative;
+}
+
+.video-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30rpx;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10rpx;
+  border-radius: 50%;
+}
+
+.video-item image {
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+}
+
+.image-item image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 视频容器样式 */
+.video-container {
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 比例 */
+  height: 0;
+  position: relative;
+  border-radius: 8rpx;
+  overflow: hidden;
+  border: 2rpx solid #D2B48C;
+}
+
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 全屏预览弹窗 */
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+}
+
+.fullscreen-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.fullscreen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.fullscreen-title {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.fullscreen-close {
+  font-size: 36rpx;
+  cursor: pointer;
+}
+
+.fullscreen-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx;
+}
+
+.fullscreen-body image {
+  max-width: 100%;
+  max-height: 80vh;
+}
+
+.fullscreen-body video {
+  width: 100%;
+  height: 80vh;
+}
+
+/* 介绍页样式 */
+.intro-section {
+  margin-top: 30rpx;
+  margin-bottom: 40rpx;
+}
+
+.intro-card {
+  background: white;
+  border-radius: 15rpx;
+  padding: 40rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  border: 2rpx solid #D2B48C;
+  text-align: center;
+}
+
+.intro-icon {
+  font-size: 80rpx;
+  margin-bottom: 30rpx;
+}
+
+.intro-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #8B4513;
+  margin-bottom: 20rpx;
+}
+
+.intro-desc {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 40rpx;
+  line-height: 1.5;
+}
+
+.intro-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30rpx;
+  margin-bottom: 40rpx;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feature-icon {
+  font-size: 48rpx;
+  margin-bottom: 15rpx;
+}
+
+.feature-text {
+  font-size: 22rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.intro-tip {
+  font-size: 20rpx;
+  color: #8B4513;
+  font-style: italic;
+  font-weight: bold;
+}
