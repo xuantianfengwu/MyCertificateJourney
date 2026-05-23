@@ -1,0 +1,57 @@
+<!-- 登录检查组件 -->
+
+<!-- 授权弹窗 -->
+<view class="auth-modal {{showAuthModal ? 'show' : ''}}" wx:if="{{showAuthModal}}">
+  <view class="auth-mask" bindtap="hideAuthModal"></view>
+  <view class="auth-content">
+    <view class="auth-title">完善用户信息</view>
+    <view class="auth-desc">为了给您提供更好的服务，需要获取您的昵称和头像信息</view>
+    <view class="auth-btn" bindtap="handleAuth">授权获取</view>
+    <view class="auth-cancel" bindtap="hideAuthModal">暂不授权</view>
+  </view>
+</view>
+
+<!-- 信息完善弹窗 -->
+  <view class="auth-modal {{showInfoCompleteModal ? 'show' : ''}}" wx:if="{{showInfoCompleteModal}}">
+    <view class="auth-mask" bindtap="hideInfoCompleteModal"></view>
+    <view class="info-complete-content">
+      <view class="info-complete-title">完善个人信息</view>
+      <view class="info-complete-desc">请完善您的个人信息，以便我们为您提供更好的服务</view>
+      
+      <!-- 头像上传 -->
+      <view class="info-complete-section">
+        <view class="info-complete-label">头像</view>
+        <view class="avatar-section">
+          <image class="avatar-preview" src="{{formData.avatarUrl || '../../images/avatar.png'}}"></image>
+          <view class="avatar-upload-btn" bindtap="chooseAvatar">上传头像</view>
+        </view>
+      </view>
+      
+      <view class="info-complete-section">
+        <view class="info-complete-label">昵称</view>
+        <input class="info-complete-input" value="{{formData.nickName}}" data-field="nickName" bindinput="handleInputChange" placeholder="请输入您的昵称" />
+      </view>
+      
+      <view class="info-complete-section">
+        <view class="info-complete-label">性别</view>
+        <view class="gender-section">
+          <view class="gender-option {{formData.gender === 1 ? 'active' : ''}}" data-gender="1" bindtap="handleGenderSelect">男</view>
+          <view class="gender-option {{formData.gender === 2 ? 'active' : ''}}" data-gender="2" bindtap="handleGenderSelect">女</view>
+        </view>
+        <view class="gender-tip">这将影响你学证时挑战的擂主列表，请谨慎选择</view>
+      </view>
+      
+      <view class="info-complete-buttons">
+        <view class="wechat-info-btn" bindtap="useWeChatInfo">使用我的微信信息</view>
+        <view class="submit-btn" bindtap="submitInfoComplete">提交</view>
+        <view class="cancel-btn" bindtap="hideInfoCompleteModal">取消</view>
+      </view>
+    </view>
+  </view>
+
+<!-- 页面蒙版 -->
+<view class="page-mask {{showMask ? 'show' : ''}}" wx:if="{{showMask}}">
+  <view class="mask-content">
+    <button class="mask-button" bindtap="handleMaskClick">{{maskText}}</button>
+  </view>
+</view>

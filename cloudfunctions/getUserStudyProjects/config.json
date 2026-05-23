@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "openapi": [],
+    "db": [
+      {
+        "resource": "userStudyProjectStats",
+        "permission": "read"
+      }
+    ],
+    "wxcloud": [
+      {
+        "resource": "cloudbase_function",
+        "permission": "invoke"
+      }
+    ]
+  }
+}

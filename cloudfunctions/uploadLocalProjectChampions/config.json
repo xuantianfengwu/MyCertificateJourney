@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "openapi": [],
+    "db": [
+      {
+        "resource": "projectChampions",
+        "permission": "read",
+        "actions": ["query", "update", "create"]
+      }
+    ]
+  }
+}

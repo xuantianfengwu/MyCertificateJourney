@@ -1,0 +1,119 @@
+<!--pages/user/index.wxml-->
+<view class="container" style="padding: 0;">
+  <view class="page-content" style="padding: 0 10rpx; width: 100%; box-sizing: border-box;">
+    <!-- 用户信息 -->
+    <view class="user-section">
+      <view class="user-card">
+        <view class="user-avatar">
+          <image src="{{userInfo.avatar}}" mode="aspectFill"></image>
+        </view>
+        <view class="user-info">
+          <view class="name-and-basic">
+            <view class="user-name">{{userInfo.name}}</view>
+            <view class="user-basic">
+              <view class="basic-item">{{userInfo.gender}}</view>
+              <view class="basic-item">{{userInfo.age}}岁</view>
+              <view class="basic-item">{{userInfo.city}}</view>
+            </view>
+          </view>
+          <view class="user-details">
+            <view class="detail-item">注册时间：{{userInfo.registrationTime}}</view>
+            <view class="achievement-tags">
+              <view class="achievement-tag">修炼中:{{userInfo.achievements.practicing}}</view>
+              <view class="achievement-tag">登峰造极:{{userInfo.achievements.master}}</view>
+              <view class="achievement-tag">一代宗师:{{userInfo.achievements.grandmaster}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="user-edit" bindtap="editUserInfo">
+          <view class="edit-icon">✏️</view>
+          <view class="edit-text">编辑</view>
+        </view>
+      </view>
+      
+      <!-- 标签行 -->
+      <view class="user-tags">
+        <view class="tags-header">我的</view>
+        <view class="tags-grid">
+          <view class="tag-item" bindtap="show盟主Modal">
+            <view class="tag-icon">👑</view>
+            <view class="tag-text">盟主</view>
+          </view>
+          <view class="tag-item" bindtap="show搭子Modal">
+            <view class="tag-icon">🤝</view>
+            <view class="tag-text">搭子</view>
+          </view>
+          <view class="tag-item" bindtap="show成就Modal">
+            <view class="tag-icon">🏆</view>
+            <view class="tag-text">成就</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 功能菜单 -->
+    <view class="menu-section">
+      <view class="section-title">功能菜单</view>
+      <view class="menu-card">
+        <view class="menu-item" bindtap="systemSettings">
+          <view class="menu-icon">⚙️</view>
+          <view class="menu-name">系统设置</view>
+          <image class="menu-arrow" src="../../images/arrow.svg"></image>
+        </view>
+        <view class="menu-item" bindtap="customerService">
+          <view class="menu-icon">📞</view>
+          <view class="menu-name">客服中心</view>
+          <image class="menu-arrow" src="../../images/arrow.svg"></image>
+        </view>
+        <view class="menu-item" bindtap="aboutUs">
+          <view class="menu-icon">📄</view>
+          <view class="menu-name">关于我们</view>
+          <image class="menu-arrow" src="../../images/arrow.svg"></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- 退出登录 -->
+    <view class="logout-section">
+      <button class="logout-btn" bindtap="logout">退出登录</button>
+    </view>
+
+    <!-- 意见反馈 -->
+    <view class="feedback-section">
+      <view class="feedback-toggle" bindtap="toggleFeedback">
+        <view class="toggle-line"></view>
+        <view class="toggle-text">{{isFeedbackExpanded ? '点击隐藏反馈区' : '我要反馈'}}</view>
+        <view class="toggle-line"></view>
+      </view>
+      <view class="feedback-card" wx:if="{{isFeedbackExpanded}}">
+        <textarea class="feedback-input" placeholder="关于产品功能有任何建议和意见，欢迎反馈，期待你的声音（最多一周一次哦）" placeholder-style="color:#999" maxlength="500"></textarea>
+        <button class="feedback-btn" bindtap="submitFeedback">提交</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 引导蒙版组件 -->
+  <guide-mask 
+    id="guideMask" 
+    show="{{showMask}}" 
+    maskType="{{maskType}}" 
+    bind:maskClick="handleMaskClick" 
+  />
+
+  <!-- 基础授权弹窗组件 -->
+  <auth-modal 
+    id="authModal" 
+    show="{{showAuthModal}}" 
+    bind:authSuccess="handleAuthSuccess" 
+    bind:authCancel="handleAuthCancel" 
+  />
+
+  <!-- 用户信息编辑弹窗组件 -->
+  <info-editor 
+    id="infoEditor" 
+    show="{{showInfoEditor}}" 
+    initialInfo="{{initialUserInfo}}" 
+    bind:infoSubmit="handleInfoSubmit" 
+    bind:infoCancel="handleInfoCancel" 
+  />
+</view>

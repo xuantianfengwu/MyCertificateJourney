@@ -1,0 +1,144 @@
+<!--pages/exam/check.wxml-->
+<view class="container">
+  <!-- 引导蒙版组件 -->
+  <guide-mask 
+    id="guideMask" 
+    show="{{showMask}}" 
+    maskType="{{maskType}}" 
+    bind:maskClick="handleMaskClick" 
+  />
+
+  <!-- 基础授权弹窗组件 -->
+  <auth-modal 
+    id="authModal" 
+    show="{{showAuthModal}}" 
+    bind:authSuccess="handleAuthSuccess" 
+    bind:authCancel="handleAuthCancel" 
+  />
+
+  <!-- 用户信息编辑弹窗组件 -->
+  <info-editor 
+    id="infoEditor" 
+    show="{{showInfoEditor}}" 
+    initialInfo="{{initialUserInfo}}" 
+    bind:infoSubmit="handleInfoSubmit" 
+    bind:infoCancel="handleInfoCancel" 
+  />
+
+
+  <view class="page-content">
+    <!-- 页面标题 -->
+    <view class="page-header">
+      <view class="page-title">考证服务</view>
+      <view class="page-subtitle">查询成绩，管理证书</view>
+    </view>
+
+    <!-- 功能选项卡 -->
+    <view class="tab-section">
+      <view class="tab-bar">
+        <view class="tab-item {{activeTab == 'schedule' ? 'active' : ''}}" bindtap="switchTab" data-tab="schedule">考试日历</view>
+        <view class="tab-item {{activeTab == 'certificate' ? 'active' : ''}}" bindtap="switchTab" data-tab="certificate">证书查询</view>
+        <view class="tab-item {{activeTab == 'forum' ? 'active' : ''}}" bindtap="switchTab" data-tab="forum">本地资讯</view>
+      </view>
+    </view>
+
+    <!-- 证书查询 -->
+    <view wx:if="{{activeTab == 'certificate'}}" class="certificate-section">
+      <!-- 证书查询工具 -->
+      <view class="tool-section">
+        <view class="section-title">证书查询工具</view>
+        <view class="tool-grid">
+          <view class="tool-card" bindtap="nationalCertificateQuery">
+            <view class="tool-icon">🔍</view>
+            <view class="tool-title">全国证书查询</view>
+            <view class="tool-desc">查询全国范围内的职业资格证书</view>
+          </view>
+          <view class="tool-card" bindtap="certificateVerify">
+            <view class="tool-icon">📋</view>
+            <view class="tool-title">证书验证</view>
+            <view class="tool-desc">验证证书的真伪和有效性</view>
+          </view>
+          <view class="tool-card" bindtap="shareCertificate">
+            <view class="tool-icon">📤</view>
+            <view class="tool-title">证书分享</view>
+            <view class="tool-desc">分享你的证书到社交媒体</view>
+          </view>
+          <view class="tool-card" bindtap="backupCertificate">
+            <view class="tool-icon">💾</view>
+            <view class="tool-title">证书备份</view>
+            <view class="tool-desc">备份你的证书电子版</view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+    <!-- 考试日历 -->
+    <view wx:if="{{activeTab == 'schedule'}}" class="schedule-section">
+      <view class="section-title">考试日历</view>
+      <view class="schedule-list">
+        <view wx:for="{{schedules}}" wx:key="id" class="schedule-item" bindtap="viewScheduleDetail" data-id="{{item.id}}">
+          <view class="schedule-date">
+            <view class="date-month">{{item.date.substring(5, 7)}}月</view>
+            <view class="date-day">{{item.date.substring(8, 10)}}</view>
+          </view>
+          <view class="schedule-info">
+            <view class="schedule-exam">{{item.exam}}</view>
+            <view class="schedule-time">{{item.time}}</view>
+            <view class="schedule-location">{{item.location}}</view>
+          </view>
+          <view class="schedule-status {{item.status == '即将到来' ? 'upcoming' : 'completed'}}">{{item.status}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 本地论坛 -->
+    <view wx:if="{{activeTab == 'forum'}}" class="forum-section">
+      <!-- 城市选择 -->
+      <view class="city-selector">
+        <view class="section-title">选择城市</view>
+        <view class="city-grid">
+          <view wx:for="{{cities}}" wx:key="id" class="city-item {{selectedCity == item.id ? 'active' : ''}}" bindtap="selectCity" data-id="{{item.id}}">
+            {{item.name}}
+          </view>
+        </view>
+      </view>
+
+      <!-- 备考空间 -->
+      <view class="study-space-section">
+        <view class="section-header">
+          <view class="section-title">备考空间</view>
+          <view class="more-btn" bindtap="viewMoreSpaces">更多</view>
+        </view>
+        <view class="space-list">
+          <view wx:for="{{studySpaces[selectedCity]}}" wx:key="id" class="space-item">
+            <view class="space-name">{{item.name}}</view>
+            <view class="space-info">
+              <view class="space-address">{{item.address}}</view>
+              <view class="space-hours">{{item.hours}}</view>
+              <view class="space-features">{{item.features}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 备考机构 -->
+      <view class="study-institution-section">
+        <view class="section-header">
+          <view class="section-title">备考机构</view>
+          <view class="more-btn" bindtap="viewMoreInstitutions">更多</view>
+        </view>
+        <view class="space-list">
+          <view wx:for="{{studyInstitutions[selectedCity]}}" wx:key="id" class="space-item">
+            <view class="space-name">{{item.name}}</view>
+            <view class="space-info">
+              <view class="space-address">{{item.address}}</view>
+              <view class="space-hours">{{item.hours}}</view>
+              <view class="space-features">{{item.features}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

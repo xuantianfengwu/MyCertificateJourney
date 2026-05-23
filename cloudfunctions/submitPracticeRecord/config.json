@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "openapi": [],
+    "db": [
+      {
+        "resource": "userPracticeRecords",
+        "permission": "write",
+        "actions": ["add"]
+      },
+      {
+        "resource": "userStudyProjectStats",
+        "permission": "read/write",
+        "actions": ["get", "update"]
+      }
+    ]
+  }
+}

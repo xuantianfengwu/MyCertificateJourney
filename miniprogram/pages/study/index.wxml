@@ -1,0 +1,541 @@
+<!--pages/study/index.wxml-->
+<view class="container" style="padding: 0; background-color: #f8f4e8;">
+  <!-- 引导蒙版组件 -->
+  <guide-mask 
+    id="guideMask" 
+    show="{{showMask}}" 
+    maskType="{{maskType}}" 
+    bind:maskClick="handleMaskClick" 
+  />
+
+  <!-- 基础授权弹窗组件 -->
+  <auth-modal 
+    id="authModal" 
+    show="{{showAuthModal}}" 
+    bind:authSuccess="handleAuthSuccess" 
+    bind:authCancel="handleAuthCancel" 
+  />
+
+  <!-- 用户信息编辑弹窗组件 -->
+  <info-editor 
+    id="infoEditor" 
+    show="{{showInfoEditor}}" 
+    initialInfo="{{initialUserInfo}}" 
+    bind:infoSubmit="handleInfoSubmit" 
+    bind:infoCancel="handleInfoCancel" 
+  />
+
+
+  <view class="page-content" style="padding: 0 10rpx; width: 100%; box-sizing: border-box;">
+    <!-- 页面标题 -->
+    <view class="page-header">
+      <view class="page-title">武学修炼中心</view>
+      <view class="page-subtitle">加入门派，品味武林</view>
+      <view class="intro-help" bindtap="goToIntroPage">? 如何修炼</view>
+    </view>
+
+    <!-- 门派选择 -->
+    <view class="journey-section">
+      <view class="section-header">
+        <view class="section-title">
+          <view class="title-icon">🏔️</view>
+          <view class="title-text">门派选择</view>
+        </view>
+        <view class="title-help" bindtap="showTitleHelp">? 门派称号</view>
+      </view>
+      <view class="journey-grid">
+        <!-- 有学习记录时显示正常卡片 -->
+        <block wx:if="{{journeyData.length > 0}}">
+          <!-- 左侧门派卡片 (第一个元素) -->
+          <view class="journey-card {{selectedSubjectId == journeyData[0].studyProjectId && pageState != 'intro' && pageState != 'join' ? 'active' : ''}}" bindtap="selectSubject" data-id="{{journeyData[0].studyProjectId}}">
+            <view class="exam-tags">
+              <view class="exam-tag exam-name-tag">{{journeyData[0].examName}}</view>
+              <view class="exam-tag exam-level-tag">{{journeyData[0].examLevelName}}</view>
+            </view>
+            <view class="journey-header">
+              <view class="journey-icon">{{journeyData[0].examIcon}}</view>
+              <view class="journey-info">
+                <view class="journey-name">{{journeyData[0].projectName}}</view>
+                <view class="journey-realm">{{journeyData[0].realm}}</view>
+              </view>
+            </view>
+            <view class="journey-progress">
+              <view class="progress-bar">
+                <view class="progress-fill" style="width: {{journeyData[0].studyProgress}}%"></view>
+              </view>
+            </view>
+          </view>
+          <!-- 右侧门派卡片 -->
+          <block wx:if="{{journeyData.length > 1}}">
+            <view class="journey-card {{selectedSubjectId == journeyData[1].studyProjectId && pageState != 'intro' && pageState != 'join' ? 'active' : ''}}" bindtap="selectSubject" data-id="{{journeyData[1].studyProjectId}}">
+              <view class="exam-tags">
+                <view class="exam-tag exam-name-tag">{{journeyData[1].examName}}</view>
+                <view class="exam-tag exam-level-tag">{{journeyData[1].examLevelName}}</view>
+              </view>
+              <view class="journey-header">
+                <view class="journey-icon">{{journeyData[1].examIcon}}</view>
+                <view class="journey-info">
+                  <view class="journey-name">{{journeyData[1].projectName}}</view>
+                  <view class="journey-realm">{{journeyData[1].realm}}</view>
+                </view>
+              </view>
+              <view class="journey-progress">
+                <view class="progress-bar">
+                  <view class="progress-fill" style="width: {{journeyData[1].studyProgress}}%"></view>
+                </view>
+              </view>
+            </view>
+          </block>
+          <!-- 只有一个元素时，右侧显示"点击加入门派" -->
+          <block wx:elif="{{journeyData.length === 1}}">
+            <view class="journey-card join-card" bindtap="goToJoinPage">
+              <view class="join-content">
+                <view class="join-icon">➕</view>
+                <view class="join-text">点击加入门派</view>
+              </view>
+            </view>
+          </block>
+        </block>
+        <!-- 没有学习记录时，左右都显示"点击加入门派" -->
+        <block wx:else>
+          <view class="journey-card join-card" bindtap="goToJoinPage">
+            <view class="join-content">
+              <view class="join-icon">➕</view>
+              <view class="join-text">点击加入门派</view>
+            </view>
+          </view>
+          <view class="journey-card join-card" bindtap="goToJoinPage">
+            <view class="join-content">
+              <view class="join-icon">➕</view>
+              <view class="join-text">点击加入门派</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 分割线 -->
+    <view class="divider"></view>
+
+    <!-- 选择门派页 -->
+    <view wx:if="{{pageState === 'join'}}" class="join-section">
+      <view class="join-header">
+        <view class="join-title">请选择你要加入的门派</view>
+      </view>
+      <view class="join-content">
+        <!-- examName 按钮列表 -->
+        <view class="exam-buttons">
+          <block wx:for="{{studyProjectsGrouped}}" wx:key="examName">
+            <view class="exam-btn {{selectedExamName === item.examName ? 'active' : ''}}" bindtap="toggleExam" data-name="{{item.examName}}">
+              {{item.examName}}
+            </view>
+          </block>
+        </view>
+        <!-- 展开的 examLevelName 和 projectName -->
+        <block wx:if="{{selectedExamName}}">
+          <block wx:for="{{studyProjectsGrouped}}" wx:key="examName">
+            <block wx:if="{{item.examName === selectedExamName}}">
+              <block wx:for="{{item.levels}}" wx:key="examLevelName">
+                <view class="level-group">
+                  <view class="level-name">{{item.examLevelName}}</view>
+                  <view class="project-buttons">
+                    <block wx:for="{{item.projects}}" wx:key="projectId">
+                      <view class="project-btn {{item.disabled ? 'disabled' : ''}}" bindtap="{{item.disabled ? '' : 'confirmSelectProject'}}" data-id="{{item.projectId}}" data-name="{{item.projectName}}">
+                        <view class="project-btn-icon">{{item.projectIcon}}</view>
+                        <view class="project-btn-text">{{item.disabled ? '已加入' : item.projectName}}</view>
+                      </view>
+                    </block>
+                  </view>
+                </view>
+              </block>
+            </block>
+          </block>
+        </block>
+      </view>
+    </view>
+
+    <!-- 确认选择弹窗 -->
+    <view wx:if="{{showConfirmModal}}" class="modal-overlay" bindtap="hideConfirmModal">
+      <view class="modal-content" bindtap="stopPropagation">
+        <view class="modal-header">
+          <view class="modal-title">确认加入门派</view>
+          <view class="modal-close" bindtap="hideConfirmModal">×</view>
+        </view>
+        <view class="modal-body">
+          <view class="confirm-text">确定要加入 {{confirmProjectName}} 吗？</view>
+          <view class="confirm-desc">加入后将开始该门派的学习修炼</view>
+        </view>
+        <view class="modal-footer">
+          <button class="cancel-btn" bindtap="hideConfirmModal">取消</button>
+          <button class="confirm-btn" bindtap="confirmJoinProject">确认加入</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 介绍页 -->
+    <view wx:if="{{pageState === 'intro'}}" class="intro-section">
+      <view class="intro-card">
+        <view class="intro-icon">🏮</view>
+        <view class="intro-title">欢迎来到武学修炼中心</view>
+        <view class="intro-desc">
+          这里是你修炼武学的圣地，选择一个门派开始你的修炼之旅吧！
+        </view>
+        <view class="intro-features">
+          <view class="feature-item">
+            <view class="feature-icon">📚</view>
+            <view class="feature-text">门派教材</view>
+          </view>
+          <view class="feature-item">
+            <view class="feature-icon">🏆</view>
+            <view class="feature-text">盟主挑战</view>
+          </view>
+          <view class="feature-item">
+            <view class="feature-icon">🗡️</view>
+            <view class="feature-text">门派修炼</view>
+          </view>
+          <view class="feature-item">
+            <view class="feature-icon">🙏</view>
+            <view class="feature-text">叩谢师门</view>
+          </view>
+        </view>
+        <view class="intro-tip">
+          点击上方的门派卡片开始你的修炼之旅
+        </view>
+      </view>
+    </view>
+
+    <!-- 门派页（左门派和右门派） -->
+    <view wx:elif="{{pageState === 'left' || pageState === 'right'}}">
+      <!-- 门派表现 -->
+      <view class="stat-section">
+        <view class="section-header">
+          <view class="section-title">
+            <view class="title-icon">📊</view>
+            <view class="title-text">门派表现</view>
+            <view class="disciple-number">你是本门派的第{{discipleNumber}}位弟子</view>
+          </view>
+          <view class="exit-btn" bindtap="showExitConfirm">退出师门</view>
+        </view>
+        <view class="stat-card">
+          <view class="stat-item">
+            <view class="stat-value">{{currentJourney.challengeCount}}次</view>
+            <view class="stat-label">盟主挑战</view>
+          </view>
+          <view class="stat-divider"></view>
+          <view class="stat-item">
+            <view class="stat-value">{{currentJourney.winRate}}%</view>
+            <view class="stat-label">挑战胜率</view>
+          </view>
+          <view class="stat-divider"></view>
+          <view class="stat-item">
+            <view class="stat-value">{{currentJourney.studyProgress}}%</view>
+            <view class="stat-label">修炼进度</view>
+          </view>
+          <view class="stat-divider"></view>
+          <view class="stat-item">
+            <view class="stat-value">{{currentJourney.accuracy}}%</view>
+            <view class="stat-label">招式准确度</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 盟主挑战 -->
+      <view class="achievement-section">
+        <view class="section-header">
+          <view class="section-title">
+            <view class="title-icon">🏆</view>
+            <view class="title-text">盟主挑战</view>
+          </view>
+          <view class="champion-btn" bindtap="showPreviousChampions">历届盟主</view>
+        </view>
+        <view class="champion-card">
+          <view class="champion-header">
+            <view class="champion-title">今日盟主</view>
+            <view class="champion-name">{{currentChampionData.championName}}</view>
+          </view>
+          <view class="champion-cover">
+            <image src="{{currentChampionData.championPortraitUrl}}" mode="aspectFill"></image>
+          </view>
+          <view class="champion-desc">
+            <view class="desc-item">
+              <view class="desc-label">今日挑战</view>
+              <view class="desc-value">{{currentChampionData.totalChallengeUserCount}}人</view>
+            </view>
+            <view class="desc-item">
+              <view class="desc-label">挑战成功</view>
+              <view class="desc-value">{{currentChampionData.successChallengeUserCount}}人</view>
+            </view>
+            <view class="desc-item">
+              <view class="desc-label">挑战失败</view>
+              <view class="desc-value">{{currentChampionData.failChallengeUserCount}}人</view>
+            </view>
+            <view class="desc-item challenge-btn">
+              <view class="btn-text">开始挑战</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 门派教材 -->
+      <view class="task-section">
+        <view class="section-title">
+          <view class="title-icon">📜</view>
+          <view class="title-text">门派教材</view>
+        </view>
+        <view class="task-card">
+          <view wx:for="{{currentJourney.textBooks}}" wx:key="id" class="task-item">
+            <view class="task-checkbox" bindtap="toggleTask" data-id="{{item.id}}">
+              <view class="checkbox {{item.completed ? 'checked' : ''}}">{{item.completed ? '✓' : ''}}</view>
+            </view>
+            <view class="task-content">
+              <view class="task-title">{{item.title}}</view>
+              <view class="task-desc">{{item.desc}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 门派修炼 -->
+      <view class="tool-section">
+        <view class="section-header">
+          <view class="section-title">
+            <view class="title-icon">🏛️</view>
+            <view class="title-text">门派修炼</view>
+          </view>
+          <view class="champion-btn" bindtap="showSectHistory">门派秘史</view>
+        </view>
+        <view class="tool-grid">
+          <view class="tool-card" bindtap="goToPractice">
+            <view class="tool-icon">🗡️</view>
+            <view class="tool-title">基础练习</view>
+            <view class="tool-desc">按章节进行练习</view>
+          </view>
+          <navigator url="/pages/study/simulation" class="tool-card">
+            <view class="tool-icon">⚔️</view>
+            <view class="tool-title">小试牛刀</view>
+            <view class="tool-desc">模拟真实考试环境</view>
+          </navigator>
+          <navigator url="/pages/study/error" class="tool-card">
+            <view class="tool-icon">🎯</view>
+            <view class="tool-title">弱点突破</view>
+            <view class="tool-desc">回顾错题，提高胜率</view>
+          </navigator>
+          <navigator url="/pages/study/note" class="tool-card">
+            <view class="tool-icon">📚</view>
+            <view class="tool-title">我的珍藏</view>
+            <view class="tool-desc">回顾收藏，加强记忆</view>
+          </navigator>
+        </view>
+      </view>
+
+      <!-- 叩谢师门 -->
+      <view class="thanks-section">
+        <view class="section-title">
+          <view class="title-icon">🙏</view>
+          <view class="title-text">叩谢师门</view>
+        </view>
+        <view class="thanks-content">
+          <!-- 已达到一代宗师 -->
+          <view wx:if="{{isMaster}}" class="thanks-master">
+            <view class="master-icon">👑</view>
+            <view class="master-text">你已经是一代宗师了，师门以你为骄傲！</view>
+          </view>
+          <!-- 未达到100%进度 -->
+          <view wx:elif="{{studyProgress < 100}}" class="thanks-progress">
+            <view class="progress-text">将门派修炼进度达到100%，才有可能叩谢师门哦～</view>
+            <view class="progress-bar">
+              <view class="progress-fill" style="width: {{studyProgress}}%"></view>
+            </view>
+            <view class="progress-info">当前进度：{{studyProgress}}%</view>
+          </view>
+          <!-- 达到100%进度，可上传证明 -->
+          <view wx:else class="thanks-upload">
+            <view class="upload-text">恭喜你已完成门派修炼！请上传你的考试通过证明，经师门审核后，你将获得"一代宗师"称号。</view>
+            <view class="upload-btn" bindtap="chooseImage">
+              <view class="upload-icon">📷</view>
+              <view class="upload-label">上传考试通过证明</view>
+            </view>
+            <view wx:if="{{uploadedImage}}" class="uploaded-image">
+              <image src="{{uploadedImage}}" mode="aspectFill"></image>
+              <view class="upload-status">审核中...</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 历届盟主浮层 -->
+    <view wx:if="{{showChampionsModal}}" class="modal-overlay champions-overlay">
+      <view class="modal-content champions-content" bindtap="stopPropagation">
+        <view class="modal-header">
+          <view class="modal-title">历届盟主</view>
+          <view class="modal-close" bindtap="hidePreviousChampions">×</view>
+        </view>
+        <view class="champions-table">
+          <view class="table-header">
+            <view class="table-column date">轮次</view>
+            <view class="table-column name">盟主</view>
+            <view class="table-column images">盟主靓照</view>
+          </view>
+          <view wx:for="{{previousChampions}}" wx:key="id" class="table-row">
+            <view class="table-column date">{{item.round}}</view>
+            <view class="table-column name">{{item.name}}</view>
+            <view class="table-column images">
+              <view class="image-grid">
+                <!-- 前7个图片位 -->
+                <view wx:for="{{item.images}}" wx:key="index" class="image-item" bindtap="previewImage" data-image="{{item}}" data-empty="{{!item}}">
+                  <image src="{{item}}" mode="aspectFill"></image>
+                </view>
+                <!-- 第8个视频位 -->
+                <view class="image-item video-item" bindtap="previewVideo" data-video="{{item.video}}" data-empty="{{!item.video}}">
+                  <view class="video-icon">🎬</view>
+                  <image wx:if="{{item.video}}" src="{{item.images[0]}}" mode="aspectFill"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 退出师门确认弹窗 -->
+    <view wx:if="{{showExitConfirm}}" class="modal-overlay" bindtap="hideExitConfirm">
+      <view class="modal-content" bindtap="stopPropagation">
+        <view class="modal-header">
+          <view class="modal-title">退出师门确认</view>
+          <view class="modal-close" bindtap="hideExitConfirm">×</view>
+        </view>
+        <view class="modal-body">
+          <view class="modal-text">确定退出当前门派吗，你当前的修炼进度将全部清零作废，再次加入要重头开始</view>
+          <view class="countdown" wx:if="{{countdown > 0}}">确认将在 {{countdown}} 秒后可用</view>
+        </view>
+        <view class="modal-footer">
+          <button class="cancel-btn" bindtap="hideExitConfirm">取消</button>
+          <button class="confirm-btn" bindtap="confirmExit" disabled="{{countdown > 0}}">确认退出</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 上传图片预览弹窗 -->
+    <view wx:if="{{showImagePreview}}" class="modal-overlay" bindtap="hideImagePreview">
+      <view class="modal-content" bindtap="stopPropagation">
+        <view class="modal-header">
+          <view class="modal-title">上传证明</view>
+          <view class="modal-close" bindtap="hideImagePreview">×</view>
+        </view>
+        <view class="modal-body">
+          <view class="preview-text">请上传你的考试通过证明图片</view>
+          <view class="preview-upload" bindtap="chooseImage">
+            <view class="preview-icon">📷</view>
+            <view class="preview-label">选择图片</view>
+          </view>
+          <view wx:if="{{uploadedImage}}" class="preview-image">
+            <image src="{{uploadedImage}}" mode="aspectFill"></image>
+          </view>
+        </view>
+        <view class="modal-footer">
+          <button class="cancel-btn" bindtap="hideImagePreview">取消</button>
+          <button class="confirm-btn" bindtap="submitImage" wx:if="{{uploadedImage}}">提交审核</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 门派称号说明弹窗 -->
+    <view wx:if="{{showTitleHelp}}" class="modal-overlay" bindtap="hideTitleHelp">
+      <view class="modal-content" bindtap="stopPropagation">
+        <view class="modal-header">
+          <view class="modal-title">门派称号说明</view>
+          <view class="modal-close" bindtap="hideTitleHelp">×</view>
+        </view>
+        <view class="modal-body">
+          <view class="title-help-text">加入门派后，随修炼进度提升，门派称号将会变化</view>
+          <view class="title-help-table">
+            <view class="table-header">
+              <view class="table-column standard">标准</view>
+              <view class="table-column title">称号</view>
+            </view>
+            <view class="table-row">
+              <view class="table-column standard">0-20</view>
+              <view class="table-column title">初出茅庐</view>
+            </view>
+            <view class="table-row">
+              <view class="table-column standard">20-40</view>
+              <view class="table-column title">渐入佳境</view>
+            </view>
+            <view class="table-row">
+              <view class="table-column standard">40-60</view>
+              <view class="table-column title">小有成就</view>
+            </view>
+            <view class="table-row">
+              <view class="table-column standard">60-80</view>
+              <view class="table-column title">炉火纯青</view>
+            </view>
+            <view class="table-row">
+              <view class="table-column standard">80-100</view>
+              <view class="table-column title">登峰造极</view>
+            </view>
+            <view class="table-row">
+              <view class="table-column standard">叩谢师门后</view>
+              <view class="table-column title">一代宗师</view>
+            </view>
+          </view>
+        </view>
+        <view class="modal-footer">
+          <button class="confirm-btn" bindtap="hideTitleHelp">我知道了</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 图片预览弹窗 -->
+    <view wx:if="{{showImagePreview}}" class="fullscreen-overlay">
+      <view class="fullscreen-content">
+        <view class="fullscreen-header">
+          <view class="fullscreen-title">盟主靓照</view>
+          <view class="fullscreen-close" bindtap="hideFullscreenPreview">×</view>
+        </view>
+        <view class="fullscreen-body">
+          <image src="{{previewImageUrl}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- 视频预览弹窗 -->
+    <view wx:if="{{showVideoPreview}}" class="fullscreen-overlay">
+      <view class="fullscreen-content">
+        <view class="fullscreen-header">
+          <view class="fullscreen-title">盟主视频</view>
+          <view class="fullscreen-close" bindtap="hideFullscreenPreview">×</view>
+        </view>
+        <view class="fullscreen-body">
+          <video src="{{previewVideoUrl}}" controls autoplay></video>
+        </view>
+      </view>
+    </view>
+
+    <!-- 门派秘史浮层 -->
+    <view wx:if="{{showSectHistoryModal}}" class="modal-overlay champions-overlay">
+      <view class="modal-content champions-content" bindtap="stopPropagation">
+        <view class="modal-header">
+          <view class="modal-title">门派秘史</view>
+          <view class="modal-close" bindtap="hideSectHistory">×</view>
+        </view>
+        <view class="champions-table">
+          <view class="table-header">
+            <view class="table-column date" style="width: 10%;">序号</view>
+            <view class="table-column name" style="width: 30%;">标题</view>
+            <view class="table-column images" style="width: 60%;">记录</view>
+          </view>
+          <view wx:for="{{sectHistory}}" wx:key="id" class="table-row">
+            <view class="table-column date">{{item.id}}</view>
+            <view class="table-column name">{{item.title}}</view>
+            <view class="table-column images">
+              <view class="video-container" bindtap="playSectVideo" data-video="{{item.video}}">
+                <video src="{{item.video}}" controls poster="{{item.poster}}"></video>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

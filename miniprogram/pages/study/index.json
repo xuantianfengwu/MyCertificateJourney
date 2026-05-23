@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "guide-mask": "../../components/guide-mask/guide-mask",
+    "auth-modal": "../../components/auth-modal/auth-modal",
+    "info-editor": "../../components/info-editor/info-editor"
+  }
+}

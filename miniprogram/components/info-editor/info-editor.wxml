@@ -1,0 +1,50 @@
+<!--components/info-editor/info-editor.wxml-->
+<view class="info-editor {{show ? 'show' : ''}}" wx:if="{{show}}">
+  <view class="info-editor-mask" bindtap="handleCancel"></view>
+  <view class="info-complete-content">
+    <view class="info-complete-title">完善个人信息</view>
+    <view class="info-complete-desc">小程序部分板块内容，需根据填写信息才能成功展示</view>
+    
+    <!-- 头像选择 -->
+    <view class="info-complete-section row-layout">
+      <view class="info-complete-label">头像</view>
+      <view class="avatar-section">
+        <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+          <image class="avatar-preview" src="{{formData.avatarUrl || '../../images/avatar.png'}}"></image>
+          <view class="avatar-tip">点击选择</view>
+        </button>
+      </view>
+    </view>
+    
+    <view class="info-complete-section row-layout">
+      <view class="info-complete-label">昵称</view>
+      <input class="info-complete-input" type="nickname" value="{{formData.nickName}}" bindinput="handleNicknameInput" placeholder="请输入您的昵称" />
+    </view>
+    
+    <view class="info-complete-section row-layout">
+      <view class="info-complete-label">性别</view>
+      <view class="gender-section">
+        <view class="gender-option small {{formData.gender === 1 ? 'active' : ''}}" data-gender="1" bindtap="handleGenderSelect">男</view>
+        <view class="gender-option small {{formData.gender === 2 ? 'active' : ''}}" data-gender="2" bindtap="handleGenderSelect">女</view>
+      </view>
+    </view>
+    
+    <view class="info-complete-section row-layout">
+      <view class="info-complete-label">城市</view>
+      <view class="city-section">
+        <picker bindchange="handleCityChange" value="{{formData.cityIndex}}" range="{{cityList}}">
+          <view class="city-picker">
+            {{cityList[formData.cityIndex]}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    
+    <view class="gender-tip">性别影响「学证」模块盟主展示，必选且可修改</view>
+    
+    <view class="info-complete-buttons">
+      <view class="submit-btn" bindtap="submitInfoComplete">提交</view>
+      <view class="cancel-btn" bindtap="handleCancel">暂不完善</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "openapi": [
+    ],
+    "db": [
+      {
+        "resource": "userQuestionnaire",
+        "permission": "read"
+      }
+    ],
+    "wxcloud": [
+      {
+        "resource": "cloudbase_function",
+        "permission": "invoke"
+      }
+    ]
+  }
+}

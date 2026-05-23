@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "openapi": [
+      "wxacode.get",
+      "auth.code2Session"
+    ]
+  }
+}

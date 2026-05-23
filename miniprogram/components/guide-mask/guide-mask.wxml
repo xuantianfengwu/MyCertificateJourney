@@ -1,0 +1,6 @@
+<!--components/guide-mask/guide-mask.wxml-->
+<view class="guide-mask {{show ? 'show' : ''}}" wx:if="{{show}}">
+  <view class="mask-content">
+    <button class="mask-button" bindtap="handleMaskClick">{{maskText}}</button>
+  </view>
+</view>

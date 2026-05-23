@@ -1,0 +1,87 @@
+{
+  "studyProjectId": 4915,
+  "examName": "系统分析师",
+  "totalQuestions": 792,
+  "chapters": [
+    {
+      "chapterName": "第 1 章：计算机组成与体系结构",
+      "questionCount": 44
+    },
+    {
+      "chapterName": "第 10 章：软件工程",
+      "questionCount": 17
+    },
+    {
+      "chapterName": "第 11 章：需求工程",
+      "questionCount": 51
+    },
+    {
+      "chapterName": "第 12 章：软件架构设计",
+      "questionCount": 6
+    },
+    {
+      "chapterName": "第 13 章：系统设计",
+      "questionCount": 21
+    },
+    {
+      "chapterName": "第 14 章：项目管理",
+      "questionCount": 16
+    },
+    {
+      "chapterName": "第 15 章：多媒体基础",
+      "questionCount": 17
+    },
+    {
+      "chapterName": "第 16 章：法律法规与标准化",
+      "questionCount": 29
+    },
+    {
+      "chapterName": "第 17 章：数学与经济管理",
+      "questionCount": 52
+    },
+    {
+      "chapterName": "第 18 章：专业英语",
+      "questionCount": 8
+    },
+    {
+      "chapterName": "第 19 章：案例分析",
+      "questionCount": 93
+    },
+    {
+      "chapterName": "第 2 章：系统配置与性能评价",
+      "questionCount": 15
+    },
+    {
+      "chapterName": "第 20 章：论文写作",
+      "questionCount": 211
+    },
+    {
+      "chapterName": "第 3 章：操作系统",
+      "questionCount": 27
+    },
+    {
+      "chapterName": "第 4 章：数据库系统",
+      "questionCount": 35
+    },
+    {
+      "chapterName": "第 5 章：计算机网络",
+      "questionCount": 58
+    },
+    {
+      "chapterName": "第 6 章：信息安全",
+      "questionCount": 29
+    },
+    {
+      "chapterName": "第 7 章：系统可靠性分析与设计",
+      "questionCount": 4
+    },
+    {
+      "chapterName": "第 8 章：企业信息化战略与实施",
+      "questionCount": 50
+    },
+    {
+      "chapterName": "第 9 章：系统规划",
+      "questionCount": 9
+    }
+  ]
+}

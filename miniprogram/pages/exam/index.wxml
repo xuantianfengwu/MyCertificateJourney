@@ -1,0 +1,186 @@
+<!--pages/exam/index.wxml-->
+<view class="container">
+  <!-- 授权弹窗 -->
+  <view class="auth-modal {{showAuthModal ? 'show' : ''}}" wx:if="{{showAuthModal}}">
+    <view class="auth-mask" bindtap="hideAuthModal"></view>
+    <view class="auth-content">
+      <view class="auth-title">完善用户信息</view>
+      <view class="auth-desc">为了给您提供更好的服务，需要获取您的昵称和头像信息</view>
+      <view class="auth-btn" bindtap="handleAuth">授权获取</view>
+      <view class="auth-cancel" bindtap="hideAuthModal">暂不授权</view>
+    </view>
+  </view>
+
+  <!-- 信息完善弹窗 -->
+  <view class="auth-modal {{showInfoCompleteModal ? 'show' : ''}}" wx:if="{{showInfoCompleteModal}}">
+    <view class="auth-mask" bindtap="hideInfoCompleteModal"></view>
+    <view class="auth-content" style="width: 80%;">
+      <view class="auth-title">完善个人信息</view>
+      <view class="auth-desc">请完善您的个人信息，以便我们为您提供更好的服务</view>
+      
+      <!-- 头像上传 -->
+      <view class="form-item">
+        <view class="form-label">头像</view>
+        <view class="avatar-upload">
+          <image class="avatar-preview" src="{{formData.avatarUrl || '../../images/avatar.png'}}"></image>
+          <view class="avatar-upload-btn" bindtap="chooseAvatar">上传头像</view>
+        </view>
+      </view>
+      
+      <view class="form-item">
+        <view class="form-label">昵称</view>
+        <input class="form-input" value="{{formData.nickName}}" data-field="nickName" bindinput="handleInputChange" placeholder="请输入您的昵称" />
+      </view>
+      
+      <view class="form-item">
+        <view class="form-label">性别</view>
+        <view class="gender-options">
+          <view class="gender-option {{formData.gender === 1 ? 'active' : ''}}" data-gender="1" bindtap="handleGenderSelect">男</view>
+          <view class="gender-option {{formData.gender === 2 ? 'active' : ''}}" data-gender="2" bindtap="handleGenderSelect">女</view>
+        </view>
+        <view class="gender-tip">这将影响你学证时挑战的擂主列表，请谨慎选择</view>
+      </view>
+      
+      <view class="form-item"></view>
+      <view class="wechat-info-btn" bindtap="useWeChatInfo">使用我的微信信息</view>
+      <view class="submit-btn" bindtap="submitInfoComplete">提交</view>
+      <view class="auth-cancel" bindtap="hideInfoCompleteModal">取消</view>
+    </view>
+  </view>
+
+  <!-- 页面蒙版 -->
+  <view class="page-mask {{showMask ? 'show' : ''}}" wx:if="{{showMask}}">
+    <view class="mask-content">
+      <button class="mask-button" bindtap="handleMaskClick">{{maskText}}</button>
+    </view>
+  </view>
+
+  <view class="page-content">
+    <!-- 页面标题 -->
+    <view class="page-header">
+      <view class="page-title">发现适合你的考试</view>
+      <view class="page-subtitle">基于你的<text class="link-text" bindtap="goToQuestionnaire">过往经历</text>，找到最适合你的考试</view>
+    </view>
+
+    <!-- 考试分类 -->
+    <view class="category-section">
+      <view class="section-header">
+        <view class="section-title">考试分类</view>
+        <view class="national-list-btn" bindtap="showNationalList">国家职业资格名录</view>
+      </view>
+      <view class="category-grid">
+        <view wx:for="{{categories}}" wx:key="id" class="category-item {{selectedCategory == item.id ? 'active' : ''}}" bindtap="selectCategory" data-id="{{item.id}}">
+          <view class="category-icon">{{item.icon}}</view>
+          <view class="category-name">{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 国家职业资格名录浮窗 -->
+    <view class="national-list-modal {{showNationalList ? 'show' : ''}}" wx:if="{{showNationalList}}">
+      <view class="modal-mask" bindtap="hideNationalList"></view>
+      <view class="modal-content">
+        <view class="modal-header">
+          <view class="modal-title">国家职业资格目录(2021年版)</view>
+          <view class="modal-actions">
+            <view class="modal-website" bindtap="openNationalWebsite">国家官网</view>
+            <view class="modal-close" bindtap="hideNationalList">×</view>
+          </view>
+        </view>
+        <view class="modal-body">
+          <!-- 一级目录：official_category -->
+          <view class="directory-list">
+            <view wx:for="{{nationalDirectory}}" wx:key="{{item.category}}" class="directory-item official-category-item">
+              <view class="directory-item-header" bindtap="toggleOfficialCategory" data-category="{{item.category}}">
+                <view class="directory-item-title">{{item.category}}</view>
+                <view class="directory-item-arrow {{expandedOfficialCategory == item.category ? 'expanded' : ''}}">▼</view>
+              </view>
+              <!-- 二级目录：official_sub_category -->
+              <view wx:if="{{expandedOfficialCategory == item.category}}" class="sub-directory-list">
+                <view wx:for="{{item.subCategories}}" wx:key="{{item.subCategory}}" class="directory-item official-sub-category-item">
+                  <view class="directory-item-header" bindtap="toggleOfficialSubCategory" data-subcategory="{{item.subCategory}}">
+                    <view class="directory-item-title">{{item.subCategory}}</view>
+                    <view class="directory-item-arrow {{expandedOfficialSubCategory == item.subCategory ? 'expanded' : ''}}">▼</view>
+                  </view>
+                  <!-- 三级目录：name -->
+                  <view wx:if="{{expandedOfficialSubCategory == item.subCategory}}" class="sub-directory-list">
+                    <view wx:for="{{item.exams}}" wx:key="{{item}}" class="directory-item exam-name-item">
+                      {{item}}
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 考试列表 -->
+    <view class="exam-section">
+      <view class="section-header">
+        <view class="section-title">考试列表</view>
+        <view class="header-right">
+          <!-- 未提交问卷：显示填写问卷链接 -->
+          <view wx:if="{{showQuestionnaireLink}}" class="questionnaire-link">
+            <navigator url="/pages/exam/questionnaire/questionnaire" hover-class="none">
+              填写问卷获得推荐 →
+            </navigator>
+          </view>
+          
+          <!-- 已提交问卷：显示仅看推荐勾选项 -->
+          <view wx:if="{{showRecommendFilter}}" class="recommend-filter">
+            <checkbox-group bindchange="onRecommendFilterChange">
+              <label class="checkbox-label">
+                <checkbox value="onlyRecommend" 
+                         checked="{{onlyShowRecommended}}"
+                         color="#07c160"/>
+                仅看推荐
+              </label>
+            </checkbox-group>
+          </view>
+          
+          <view class="sort-option {{selectedSort == '通过率降序' ? 'active' : ''}}" bindtap="toggleSort">
+            <text class="sort-icon">⇅</text>
+            {{selectedSort}}
+          </view>
+        </view>
+      </view>
+      <view class="exam-list">
+        <navigator wx:for="{{pagedExamList}}" wx:key="id" url="/pages/exam/detail?id={{item.id}}" class="exam-card">
+          <view class="exam-header">
+            <view class="exam-name">{{item.name}}</view>
+            <view class="exam-tags">
+              <view class="tag pass-rate">通过率{{item.passRate}}</view>
+              <view class="tag exam-fee">考试费{{item.examFee}}</view>
+            </view>
+          </view>
+          <view class="exam-desc">{{item.description}}</view>
+          <view class="exam-footer">
+            <view class="exam-footer-tags">
+              <view wx:for="{{item.tags}}" wx:key="index" wx:if="{{item !== '无等级'}}" class="tag {{item == '可抵扣个税' ? 'tax' : 'level'}}">{{item}}</view>
+            </view>
+            <view class="exam-footer-right">
+              <view class="exam-fit {{item.recommendLevel}}">
+                {{item.recommendLevelText}}
+              </view>
+              <image class="exam-arrow" src="../../images/arrow.svg"></image>
+            </view>
+          </view>
+        </navigator>
+      </view>
+      
+      <!-- 分页组件 -->
+      <view wx:if="{{totalPages > 1}}" class="pagination">
+        <view class="pagination-btn" bindtap="prevPage" wx:if="{{currentPage > 1}}">上一页</view>
+        <view class="pagination-numbers">
+          <view wx:for="{{pageNumbers}}" wx:key="index">
+            <view wx:if="{{item !== '...'}}" class="pagination-number {{currentPage == item ? 'active' : ''}}" bindtap="goToPage" data-page="{{item}}">{{item}}</view>
+            <view wx:if="{{item === '...'}}" class="pagination-ellipsis">...</view>
+          </view>
+        </view>
+        <view class="pagination-btn" bindtap="nextPage" wx:if="{{currentPage < totalPages}}">下一页</view>
+      </view>
+    </view>
+  </view>
+</view>

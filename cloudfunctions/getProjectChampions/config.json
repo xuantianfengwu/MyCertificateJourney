@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "openapi": [],
+    "db": [
+      {
+        "resource": "projectChampions",
+        "permission": "read"
+      }
+    ]
+  }
+}

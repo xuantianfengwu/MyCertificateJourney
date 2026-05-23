@@ -1,0 +1,31 @@
+# 微信小程序相关
+miniprogram/**/*.wxss
+miniprogram/**/*.*.js
+
+# 依赖目录
+node_modules/
+cloudfunctions/**/node_modules/
+
+# 锁文件（可选，建议保留package.json）
+# package-lock.json
+
+# 微信开发者工具
+.vscode/
+*.log
+*.tmp
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 环境配置（包含敏感信息）
+project.private.config.json
+envList.js
+
+# 上传临时文件
+*.bak
+*.backup
+
+# 日志
+logs/
+*.log

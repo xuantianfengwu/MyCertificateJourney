@@ -1,0 +1,63 @@
+<!--pages/exam/questionnaire/questionnaire.wxml-->
+<view class="container">
+  <text class="subtitle">填写以下信息，获得个性化考试推荐</text>
+  
+  <form bindsubmit="submitQuestionnaire" bindreset="resetForm">
+    <!-- 教育经历 -->
+    <view class="question">
+      <text class="question-title">教育经历<text class="required">*</text></text>
+      <textarea 
+        name="educationExperience" 
+        placeholder="请输入您的教育经历" 
+        value="{{answers.educationExperience}}"
+        bindinput="bindEducationExperienceInput"
+        class="textarea"
+        auto-height
+      />
+    </view>
+    
+    <!-- 工作职业 -->
+    <view class="question">
+      <text class="question-title">工作职业<text class="required">*</text></text>
+      <textarea 
+        name="occupation" 
+        placeholder="请输入您的工作职业" 
+        value="{{answers.occupation}}"
+        bindinput="bindOccupationInput"
+        class="textarea"
+        auto-height
+      />
+    </view>
+    
+    <!-- 所在行业 -->
+    <view class="question">
+      <text class="question-title">所在行业<text class="required">*</text></text>
+      <textarea 
+        name="industry" 
+        placeholder="请输入您所在的行业" 
+        value="{{answers.industry}}"
+        bindinput="bindIndustryInput"
+        class="textarea"
+        auto-height
+      />
+    </view>
+    
+    <!-- 其他证书或爱好 -->
+    <view class="question">
+      <text class="question-title">其他证书或爱好<text class="required">*</text></text>
+      <textarea 
+        name="otherCertificates" 
+        placeholder="请输入您的其他证书或爱好" 
+        value="{{answers.otherCertificates}}"
+        bindinput="bindOtherCertificatesInput"
+        class="textarea"
+        auto-height
+      />
+    </view>
+    
+    <view class="button-area">
+      <button form-type="reset" class="reset-button">重置</button>
+      <button form-type="submit" class="submit-button" loading="{{loading}}">{{submitButtonText}}</button>
+    </view>
+  </form>
+</view>

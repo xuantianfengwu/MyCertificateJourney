@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "openapi": [],
+    "storage": {
+      "allow": [
+        {
+          "action": "storage:downloadFile",
+          "resource": "*"
+        }
+      ]
+    }
+  }
+}

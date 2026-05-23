@@ -1,0 +1,106 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 授权弹窗 -->
+  <view class="auth-modal {{showAuthModal ? 'show' : ''}}" wx:if="{{showAuthModal}}">
+    <view class="auth-mask" bindtap="hideAuthModal"></view>
+    <view class="auth-content">
+      <view class="auth-title">完善用户信息</view>
+      <view class="auth-desc">为了给您提供更好的服务，需要获取您的昵称和头像信息</view>
+      <view class="auth-btn" bindtap="handleAuth">授权获取</view>
+      <view class="auth-cancel" bindtap="hideAuthModal">暂不授权</view>
+    </view>
+  </view>
+
+  <!-- 信息完善弹窗 -->
+  <view class="auth-modal {{showInfoCompleteModal ? 'show' : ''}}" wx:if="{{showInfoCompleteModal}}">
+    <view class="auth-mask" bindtap="hideInfoCompleteModal"></view>
+    <view class="auth-content" style="width: 80%;">
+      <view class="auth-title">完善个人信息</view>
+      <view class="auth-desc">请完善您的个人信息，以便我们为您提供更好的服务</view>
+      
+      <view class="form-item">
+        <view class="form-label">昵称</view>
+        <input class="form-input" value="{{formData.nickName}}" data-field="nickName" bindinput="handleInputChange" placeholder="请输入昵称" />
+      </view>
+      
+      <view class="form-item">
+        <view class="form-label">性别</view>
+        <view class="gender-options">
+          <view class="gender-option {{formData.gender === 1 ? 'active' : ''}}" data-gender="1" bindtap="handleGenderSelect">男</view>
+          <view class="gender-option {{formData.gender === 2 ? 'active' : ''}}" data-gender="2" bindtap="handleGenderSelect">女</view>
+        </view>
+        <view class="gender-tip">这将影响你学证时挑战的擂主列表，请谨慎选择</view>
+      </view>
+      
+      <view class="wechat-info-btn" bindtap="useWeChatInfo">使用我的微信信息</view>
+      <view class="auth-btn" bindtap="submitInfoComplete">提交</view>
+      <view class="auth-cancel" bindtap="hideInfoCompleteModal">取消</view>
+    </view>
+  </view>
+
+  <!-- 页面蒙版 -->
+  <view class="page-mask {{showMask ? 'show' : ''}}" wx:if="{{showMask}}">
+    <view class="mask-content">
+      <button class="mask-button" bindtap="handleMaskClick">{{maskText}}</button>
+    </view>
+  </view>
+
+  <view class="page-content">
+    <!-- 顶部欢迎信息 -->
+    <view class="welcome-section">
+      <view class="welcome-title">欢迎使用我的考证之旅</view>
+      <view class="welcome-subtitle">知识提升，税收抵扣，一步到位</view>
+    </view>
+
+    <!-- 核心价值主张 -->
+    <view class="value-section">
+      <view class="section-title">核心优势</view>
+      <view class="value-cards">
+        <view class="value-card">
+          <view class="value-icon">🎯</view>
+          <view class="value-title">智能选证</view>
+          <view class="value-desc">根据你的背景推荐最适合的考试</view>
+        </view>
+        <view class="value-card">
+          <view class="value-icon">📚</view>
+          <view class="value-title">高效学习</view>
+          <view class="value-desc">扮演江湖大侠迎战考试BOSS</view>
+        </view>
+        <view class="value-card">
+          <view class="value-icon">💰</view>
+          <view class="value-title">税收抵扣</view>
+          <view class="value-desc">享受个税专项附加扣除政策</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 核心功能介绍 -->
+    <view class="feature-section">
+      <view class="section-title">核心功能</view>
+      <view class="feature-grid">
+        <navigator url="/pages/exam/index" class="feature-card">
+          <view class="feature-icon">🔍</view>
+          <view class="feature-title">选证</view>
+          <view class="feature-desc">发现适合你的考试</view>
+        </navigator>
+        <navigator url="/pages/study/index" class="feature-card">
+          <view class="feature-icon">📝</view>
+          <view class="feature-title">学证</view>
+          <view class="feature-desc">系统学习考试内容</view>
+        </navigator>
+        <navigator url="/pages/exam/check" class="feature-card">
+          <view class="feature-icon">📄</view>
+          <view class="feature-title">考证</view>
+          <view class="feature-desc">报考到查分资讯全覆盖</view>
+        </navigator>
+        <navigator url="/pages/exam/check?tab=forum" class="feature-card">
+          <view class="feature-icon">🤝</view>
+          <view class="feature-title">结伴</view>
+          <view class="feature-desc">寻同路客，结山海盟</view>
+        </navigator>
+      </view>
+    </view>
+
+
+  </view>
+</view>
