@@ -88,3 +88,35 @@
   color: #CD853F;
   margin-left: 20rpx;
 }
+
+/* 无题库提示样式 */
+.no-question-bank {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 100rpx 60rpx;
+}
+
+.no-question-icon {
+  font-size: 120rpx;
+  margin-bottom: 40rpx;
+  opacity: 0.6;
+}
+
+.no-question-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #8B4513;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.no-question-desc {
+  font-size: 28rpx;
+  color: #A0522D;
+  text-align: center;
+  line-height: 1.6;
+  opacity: 0.8;
+}

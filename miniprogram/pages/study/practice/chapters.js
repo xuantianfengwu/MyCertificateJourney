@@ -4,15 +4,18 @@ const app = getApp();
 Page({
   data: {
     studyProjectId: 0,
+    storagePath: '',
     examName: '',
     totalQuestions: 0,
-    chapters: []
+    chapters: [],
+    hasNoQuestionBank: false
   },
 
   onLoad: function(options) {
     console.log('[Chapters] onLoad', options);
     const studyProjectId = parseInt(options.studyProjectId);
-    this.setData({ studyProjectId });
+    const storagePath = decodeURIComponent(options.storagePath || '');
+    this.setData({ studyProjectId, storagePath });
     this.loadChapters();
   },
 
@@ -20,11 +23,18 @@ Page({
     const that = this;
     wx.showLoading({ title: '加载章节...' });
     
+    // 检查是否有 storagePath
+    if (!this.data.storagePath) {
+      wx.hideLoading();
+      this.setData({ hasNoQuestionBank: true });
+      return;
+    }
+    
     wx.cloud.callFunction({
       name: 'getQuestionBank',
       data: { 
         studyProjectId: this.data.studyProjectId,
-        storagePath: 'exam_docs/ruankao/senior/system_analyst/chapter_practice/question_bank.json'
+        storagePath: this.data.storagePath
       },
       success: function(res) {
         wx.hideLoading();
@@ -33,7 +43,8 @@ Page({
           that.setData({
             examName: res.result.examName,
             totalQuestions: res.result.totalQuestions,
-            chapters: res.result.chapters
+            chapters: res.result.chapters,
+            hasNoQuestionBank: false
           });
         } else {
           wx.showToast({ title: '加载章节失败', icon: 'none' });
@@ -52,7 +63,7 @@ Page({
     console.log('[Chapters] 选择章节:', chapterName);
     
     wx.navigateTo({
-      url: `/pages/study/practice/practice?studyProjectId=${this.data.studyProjectId}&chapterName=${encodeURIComponent(chapterName)}`
+      url: `/pages/study/practice/practice?studyProjectId=${this.data.studyProjectId}&storagePath=${encodeURIComponent(this.data.storagePath)}&chapterName=${encodeURIComponent(chapterName)}`
     });
   },
 

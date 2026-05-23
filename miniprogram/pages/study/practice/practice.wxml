@@ -1,113 +1,121 @@
 <!--pages/study/practice/practice.wxml-->
 <view class="container">
-  <!-- 页面头部 -->
-  <view class="page-header">
-    <text class="exam-name">{{examName}}</text>
-    <text class="question-count">{{totalQuestions}}题</text>
+  <!-- 无题库提示 -->
+  <view wx:if="{{hasNoQuestionBank}}" class="no-question-bank">
+    <view class="no-question-icon">📦</view>
+    <view class="no-question-title">该科目暂未开通题库</view>
+    <view class="no-question-desc">我们正在努力完善中，敬请期待！</view>
   </view>
+  
+  <!-- 有题库时显示内容 -->
+  <view wx:else>
+    <!-- 页面头部 -->
+    <view class="page-header">
+      <text class="exam-name">{{examName}}</text>
+      <text class="question-count">{{totalQuestions}}题</text>
+    </view>
 
-  <!-- 章节选择模式 -->
-  <view wx:if="{{mode == 'chapter'}}" class="chapter-section">
-    <view class="section-title">选择章节</view>
-    <view class="chapter-list">
-      <view wx:for="{{chapters}}" wx:key="chapterName" 
-            class="chapter-item" bindtap="selectChapter" data-index="{{index}}">
-        <view class="chapter-info">
-          <view class="chapter-name">{{item.chapterName}}</view>
-          <view class="chapter-count">{{item.questionCount}}道题目</view>
+    <!-- 章节选择模式 -->
+    <view wx:if="{{mode == 'chapter'}}" class="chapter-section">
+      <view class="section-title">选择章节</view>
+      <view class="chapter-list">
+        <view wx:for="{{chapters}}" wx:key="chapterName" 
+              class="chapter-item" bindtap="selectChapter" data-index="{{index}}">
+          <view class="chapter-info">
+            <view class="chapter-name">{{item.chapterName}}</view>
+            <view class="chapter-count">{{item.questionCount}}道题目</view>
+          </view>
+          <text class="chapter-arrow">→</text>
         </view>
-        <text class="chapter-arrow">→</text>
       </view>
     </view>
-  </view>
 
-  <!-- 练习模式 -->
-  <view wx:if="{{mode == 'practice'}}" class="practice-section">
-    <!-- 进度条 -->
-    <view class="progress-bar">
-      <view class="progress-fill" style="width: {{(currentQuestionIndex + 1) / questions.length * 100}}%"></view>
-    </view>
-    <view class="progress-text">{{currentQuestionIndex + 1}} / {{questions.length}}</view>
-
-    <!-- 题目内容 -->
-    <view class="question-card" wx:if="{{questions[currentQuestionIndex]}}">
-      <view class="question-header">
-        <view class="question-type">{{questions[currentQuestionIndex].question_type == 'single' ? '单选题' : '多选题'}}</view>
-        <view class="question-year">{{questions[currentQuestionIndex].year}}</view>
+    <!-- 练习模式 -->
+    <view wx:if="{{mode == 'practice'}}" class="practice-section">
+      <!-- 进度条 -->
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{(currentQuestionIndex + 1) / questions.length * 100}}%"></view>
       </view>
-      
-      <view class="question-content">
-        {{questions[currentQuestionIndex].question}}
-      </view>
+      <view class="progress-text">{{currentQuestionIndex + 1}} / {{questions.length}}</view>
 
-      <!-- 选项 -->
-      <view class="options-list">
-        <view wx:for="{{questions[currentQuestionIndex].options}}" wx:key="key"
-              class="option-item {{userAnswers[questions[currentQuestionIndex].question_id] == item.key ? 'selected' : ''}} 
-                     {{showAnswer && questions[currentQuestionIndex].answer.includes(item.key) ? 'correct' : ''}}
-                     {{showAnswer && userAnswers[questions[currentQuestionIndex].question_id] == item.key && !questions[currentQuestionIndex].answer.includes(item.key) ? 'wrong' : ''}}"
-              bindtap="selectAnswer" data-answer="{{item.key}}">
-          <view class="option-key">{{item.key}}</view>
-          <view class="option-content">{{item.content}}</view>
-          <view wx:if="{{showAnswer && questions[currentQuestionIndex].answer.includes(item.key)}}" class="option-icon correct-icon">✓</view>
-          <view wx:if="{{showAnswer && userAnswers[questions[currentQuestionIndex].question_id] == item.key && !questions[currentQuestionIndex].answer.includes(item.key)}}" class="option-icon wrong-icon">✗</view>
+      <!-- 题目内容 -->
+      <view class="question-card" wx:if="{{questions[currentQuestionIndex]}}">
+        <view class="question-header">
+          <view class="question-type">{{questions[currentQuestionIndex].question_type == 'single' ? '单选题' : '多选题'}}</view>
+          <view class="question-year">{{questions[currentQuestionIndex].year}}</view>
         </view>
-      </view>
-
-      <!-- 答案和解析 -->
-      <view wx:if="{{showAnswer}}" class="answer-section">
-        <view class="answer-box">
-          <view class="answer-label">正确答案</view>
-          <view class="answer-value">{{questions[currentQuestionIndex].answer || '暂无答案'}}</view>
+        
+        <view class="question-content">
+          {{questions[currentQuestionIndex].question}}
         </view>
-        <view class="analysis-box">
-          <view class="analysis-label">解析</view>
-          <view class="analysis-content">{{questions[currentQuestionIndex].analysis || '暂无解析'}}</view>
-        </view>
-      </view>
 
-      <!-- 操作按钮 -->
-      <view class="action-buttons">
-        <button wx:if="!showAnswer" class="btn btn-secondary" bindtap="showAnswerFn">查看答案</button>
-        <button wx:if="showAnswer" class="btn btn-primary" bindtap="nextQuestion">
-          {{currentQuestionIndex < questions.length - 1 ? '下一题' : '完成练习'}}
-        </button>
+        <!-- 选项 -->
+        <view class="options-list">
+          <view wx:for="{{questions[currentQuestionIndex].options}}" wx:key="key"
+                class="option-item {{userAnswers[questions[currentQuestionIndex].question_id] == item.key ? 'selected' : ''}} {{showAnswer && questions[currentQuestionIndex].answer.includes(item.key) ? 'correct' : ''}} {{showAnswer && userAnswers[questions[currentQuestionIndex].question_id] == item.key && !questions[currentQuestionIndex].answer.includes(item.key) ? 'wrong' : ''}}"
+                bindtap="selectAnswer" data-answer="{{item.key}}">
+            <view class="option-key">{{item.key}}</view>
+            <view class="option-content">{{item.content}}</view>
+            <view wx:if="{{showAnswer && questions[currentQuestionIndex].answer.includes(item.key)}}" class="option-icon correct-icon">✓</view>
+            <view wx:if="{{showAnswer && userAnswers[questions[currentQuestionIndex].question_id] == item.key && !questions[currentQuestionIndex].answer.includes(item.key)}}" class="option-icon wrong-icon">✗</view>
+          </view>
+        </view>
+
+        <!-- 答案和解析 -->
+        <view wx:if="{{showAnswer}}" class="answer-section">
+          <view class="answer-box">
+            <view class="answer-label">正确答案</view>
+            <view class="answer-value">{{questions[currentQuestionIndex].answer || '暂无答案'}}</view>
+          </view>
+          <view class="analysis-box">
+            <view class="analysis-label">解析</view>
+            <view class="analysis-content">{{questions[currentQuestionIndex].analysis || '暂无解析'}}</view>
+          </view>
+        </view>
+
+        <!-- 操作按钮 -->
+        <view class="action-buttons">
+          <button wx:if="!showAnswer" class="btn btn-secondary" bindtap="showAnswerFn">查看答案</button>
+          <button wx:if="showAnswer" class="btn btn-primary" bindtap="nextQuestion">
+            {{currentQuestionIndex < questions.length - 1 ? '下一题' : '完成练习'}}
+          </button>
+        </view>
       </view>
     </view>
-  </view>
 
-  <!-- 练习结果模式 -->
-  <view wx:if="{{mode == 'result'}}" class="result-section">
-    <view class="result-card">
-      <view class="result-icon">🎉</view>
-      <view class="result-title">练习完成！</view>
-      
-      <view class="result-stats">
-        <view class="stat-item">
-          <view class="stat-value">{{practiceResult.total}}</view>
-          <view class="stat-label">总题数</view>
+    <!-- 练习结果模式 -->
+    <view wx:if="{{mode == 'result'}}" class="result-section">
+      <view class="result-card">
+        <view class="result-icon">🎉</view>
+        <view class="result-title">练习完成！</view>
+        
+        <view class="result-stats">
+          <view class="stat-item">
+            <view class="stat-value">{{practiceResult.total}}</view>
+            <view class="stat-label">总题数</view>
+          </view>
+          <view class="stat-item correct">
+            <view class="stat-value">{{practiceResult.correct}}</view>
+            <view class="stat-label">正确</view>
+          </view>
+          <view class="stat-item wrong">
+            <view class="stat-value">{{practiceResult.wrong}}</view>
+            <view class="stat-label">错误</view>
+          </view>
         </view>
-        <view class="stat-item correct">
-          <view class="stat-value">{{practiceResult.correct}}</view>
-          <view class="stat-label">正确</view>
+
+        <view class="result-rate">
+          <view class="rate-label">正确率</view>
+          <view class="rate-value">{{practiceResult.total > 0 ? Math.round(practiceResult.correct / practiceResult.total * 100) : 0}}%</view>
         </view>
-        <view class="stat-item wrong">
-          <view class="stat-value">{{practiceResult.wrong}}</view>
-          <view class="stat-label">错误</view>
+
+        <view class="result-buttons">
+          <button class="btn btn-secondary" bindtap="backToChapters">返回章节</button>
+          <button class="btn btn-primary" bindtap="retryPractice">重新练习</button>
         </view>
-      </view>
 
-      <view class="result-rate">
-        <view class="rate-label">正确率</view>
-        <view class="rate-value">{{practiceResult.total > 0 ? Math.round(practiceResult.correct / practiceResult.total * 100) : 0}}%</view>
+        <button class="btn btn-outline" bindtap="submitPractice">提交练习记录</button>
       </view>
-
-      <view class="result-buttons">
-        <button class="btn btn-secondary" bindtap="backToChapters">返回章节</button>
-        <button class="btn btn-primary" bindtap="retryPractice">重新练习</button>
-      </view>
-
-      <button class="btn btn-outline" bindtap="submitPractice">提交练习记录</button>
     </view>
   </view>
 </view>

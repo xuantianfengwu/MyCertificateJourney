@@ -104,19 +104,19 @@
 
 ##### 2.1.2 `studyProjects` 集合（学习项目配置）【粒度：学习项目/科目】
 
-| 字段名             | 数据类型      | 描述                                     |
-| --------------- | --------- | -------------------------------------- |
-| `_id`           | Number    | 学习项目ID（对应studyProjects.csv中的projectId） |
-| `examId`        | Number    | 所属考试ID（对应exams集合中的\_id）                |
-| `examName`      | String    | 考试名称                                   |
-| `examLevelId`   | Number    | 考试级别ID                                 |
-| `examLevelName` | String    | 考试级别名称（如"初级"、"中级"等）                    |
-| `projectName`   | String    | 学习项目/科目名称（如"初级会计实务"）                   |
-| `projectIcon`   | String    | 项目图标（如"💰"）                            |
-| `textBooks`     | Array     | 教材列表（见下方教材结构）                          |
-| `textBookAmt`   | Number    | 教材数量                                   |
-| `createdAt`     | Timestamp | 创建时间                                   |
-| `updatedAt`     | Timestamp | 更新时间                                   |
+| 字段名             | 数据类型      | 描述                                        |
+| --------------- | --------- | ----------------------------------------- |
+| `_id`           | Number    | 学习项目ID（对应cachedStudyProjects中的projectId）  |
+| `examId`        | Number    | 所属考试ID（对应exams集合中的\_id）                  |
+| `examName`      | String    | 考试名称                                      |
+| `examLevelId`   | Number    | 考试级别ID                                    |
+| `examLevelName` | String    | 考试级别名称（如"初级"、"中级"等）                     |
+| `projectName`   | String    | 学习项目/科目名称（如"初级会计实务"）                  |
+| `projectIcon`   | String    | 项目图标（如"💰"）                             |
+| `textBooks`     | Array     | 教材列表（见下方教材结构）                         |
+| `storagePath`   | String    | 题库存储路径（如`exam_docs/.../question_bank.json`），可选字段，有值表示已开通题库 |
+| `createdAt`     | Timestamp | 创建时间                                      |
+| `updatedAt`     | Timestamp | 更新时间                                      |
 
 **教材结构（textBooks数组元素）**：
 
@@ -126,7 +126,7 @@
 | `title` | String | 教材标题 |
 | `desc`  | String | 教材描述 |
 
-**说明**：本集合维护完整的三级层级结构（Exam → ExamLevel → Project），是学证页面用户学习行为的直接关联对象。用户的各项学习记录（如学习进度、题目练习、盟主挑战等）都以 `studyProjectId` 为核心标识。
+**说明**：本集合维护完整的三级层级结构（Exam → ExamLevel → Project），是学证页面用户学习行为的直接关联对象。用户的各项学习记录（如学习进度、题目练习、盟主挑战等）都以 `studyProjectId` 为核心标识。`storagePath`字段用于关联云存储中的题库文件，目前仅系统分析师（projectId: 4915）配置了该路径。
 
 ##### 2.1.3 `users` 集合（用户信息）
 

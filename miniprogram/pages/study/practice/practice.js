@@ -5,6 +5,7 @@ Page({
   data: {
     // 科目信息
     studyProjectId: 0,
+    storagePath: '',
     examName: '系统分析师',
     totalQuestions: 0,
     
@@ -24,17 +25,23 @@ Page({
       total: 0,
       correct: 0,
       wrong: 0
-    }
+    },
+    
+    // 无题库提示
+    hasNoQuestionBank: false
   },
 
   onLoad: function(options) {
     console.log('[Practice] onLoad 开始', JSON.stringify(options));
     
     const studyProjectId = parseInt(options.studyProjectId);
+    const storagePath = decodeURIComponent(options.storagePath || '');
     console.log('[Practice] studyProjectId 参数值:', studyProjectId, typeof studyProjectId);
+    console.log('[Practice] storagePath 参数值:', storagePath);
     
-    this.setData({ studyProjectId });
+    this.setData({ studyProjectId, storagePath });
     console.log('[Practice] 已设置 studyProjectId:', this.data.studyProjectId);
+    console.log('[Practice] 已设置 storagePath:', this.data.storagePath);
     
     this.loadQuestionBank(options.chapterName);
   },
@@ -44,10 +51,14 @@ Page({
     const that = this;
     console.log('[Practice] 开始加载题库...');
     console.log('[Practice] 当前 studyProjectId:', this.data.studyProjectId);
+    console.log('[Practice] storagePath:', this.data.storagePath);
     console.log('[Practice] chapterName:', chapterName);
     
-    const storagePath = 'exam_docs/ruankao/senior/system_analyst/chapter_practice/question_bank.json';
-    console.log('[Practice] 题库存储路径:', storagePath);
+    // 检查是否有 storagePath
+    if (!this.data.storagePath) {
+      this.setData({ hasNoQuestionBank: true });
+      return;
+    }
     
     wx.showLoading({ title: '加载题库...' });
     
@@ -55,7 +66,7 @@ Page({
       name: 'getQuestionBank',
       data: { 
         studyProjectId: this.data.studyProjectId,
-        storagePath: storagePath
+        storagePath: this.data.storagePath
       },
       success: function(res) {
         wx.hideLoading();
@@ -69,7 +80,8 @@ Page({
             that.setData({
               examName: res.result.examName,
               totalQuestions: res.result.totalQuestions,
-              chapters: res.result.chapters
+              chapters: res.result.chapters,
+              hasNoQuestionBank: false
             });
             console.log('[Practice] 题库加载成功，章节数量:', that.data.chapters.length);
             
@@ -145,7 +157,7 @@ Page({
       name: 'getQuestionsByChapter',
       data: { 
         studyProjectId: this.data.studyProjectId,
-        storagePath: 'exam_docs/ruankao/senior/system_analyst/chapter_practice/question_bank.json',
+        storagePath: this.data.storagePath,
         chapterName: chapterName
       },
       success: function(res) {

@@ -1,10 +1,10 @@
 
   {
-    "studyProjectId": 5101,
+    "studyProjectId": 510101,
     "textbookId": 1,
     "title": "《初级会计实务》电子书",
     "description": "基础学习资料，掌握初级会计实务的基础知识",
-    "downloadUrl": "https://example.com/textbooks/5101-1.pdf",
+    "downloadUrl": "https://example.com/textbooks/510101-1.pdf",
     "fileSize": "25.6MB",
     "type": "pdf",
     "isHidden": false,
@@ -13,11 +13,11 @@
     "updatedAt": "2026-04-01T00:00:00.000Z"
   }
   {
-    "studyProjectId": 5101,
+    "studyProjectId": 510101,
     "textbookId": 2,
     "title": "《初级会计实务》历年试题",
     "description": "历年真题练习，熟悉考试题型",
-    "downloadUrl": "https://example.com/textbooks/5101-2.pdf",
+    "downloadUrl": "https://example.com/textbooks/510101-2.pdf",
     "fileSize": "18.3MB",
     "type": "pdf",
     "isHidden": false,
@@ -26,11 +26,11 @@
     "updatedAt": "2026-04-01T00:00:00.000Z"
   }
   {
-    "studyProjectId": 5101,
+    "studyProjectId": 510101,
     "textbookId": 3,
     "title": "《初级会计实务》知识点提纲",
     "description": "重点知识点汇总，方便快速复习",
-    "downloadUrl": "https://example.com/textbooks/5101-3.pdf",
+    "downloadUrl": "https://example.com/textbooks/510101-3.pdf",
     "fileSize": "5.2MB",
     "type": "pdf",
     "isHidden": false,
@@ -39,11 +39,11 @@
     "updatedAt": "2026-04-01T00:00:00.000Z"
   }
   {
-    "studyProjectId": 5102,
+    "studyProjectId": 510102,
     "textbookId": 1,
     "title": "《经济法基础》电子书",
     "description": "基础学习资料，掌握经济法基础的基础知识",
-    "downloadUrl": "https://example.com/textbooks/5102-1.pdf",
+    "downloadUrl": "https://example.com/textbooks/510102-1.pdf",
     "fileSize": "22.1MB",
     "type": "pdf",
     "isHidden": false,
@@ -52,11 +52,11 @@
     "updatedAt": "2026-04-01T00:00:00.000Z"
   }
   {
-    "studyProjectId": 5102,
+    "studyProjectId": 510102,
     "textbookId": 2,
     "title": "《经济法基础》历年试题",
     "description": "历年真题练习，熟悉考试题型",
-    "downloadUrl": "https://example.com/textbooks/5102-2.pdf",
+    "downloadUrl": "https://example.com/textbooks/510102-2.pdf",
     "fileSize": "16.8MB",
     "type": "pdf",
     "isHidden": false,
@@ -65,11 +65,11 @@
     "updatedAt": "2026-04-01T00:00:00.000Z"
   }
   {
-    "studyProjectId": 5102,
+    "studyProjectId": 510102,
     "textbookId": 3,
     "title": "《经济法基础》知识点提纲",
     "description": "重点知识点汇总，方便快速复习",
-    "downloadUrl": "https://example.com/textbooks/5102-3.pdf",
+    "downloadUrl": "https://example.com/textbooks/510102-3.pdf",
     "fileSize": "4.8MB",
     "type": "pdf",
     "isHidden": false,
@@ -78,11 +78,11 @@
     "updatedAt": "2026-04-01T00:00:00.000Z"
   }
   {
-    "studyProjectId": 4915,
+    "studyProjectId": 490304,
     "textbookId": 1,
     "title": "《系统分析师教程》",
     "description": "系统分析师考试官方指定教材",
-    "downloadUrl": "https://example.com/textbooks/4915-1.pdf",
+    "downloadUrl": "https://example.com/textbooks/490304-1.pdf",
     "fileSize": "45.2MB",
     "type": "pdf",
     "isHidden": false,
@@ -91,11 +91,11 @@
     "updatedAt": "2026-04-01T00:00:00.000Z"
   }
   {
-    "studyProjectId": 4915,
+    "studyProjectId": 490304,
     "textbookId": 2,
     "title": "《系统分析师历年真题》",
     "description": "历年真题及详解",
-    "downloadUrl": "https://example.com/textbooks/4915-2.pdf",
+    "downloadUrl": "https://example.com/textbooks/490304-2.pdf",
     "fileSize": "32.8MB",
     "type": "pdf",
     "isHidden": false,
@@ -104,11 +104,11 @@
     "updatedAt": "2026-04-01T00:00:00.000Z"
   }
   {
-    "studyProjectId": 4915,
+    "studyProjectId": 490304,
     "textbookId": 3,
     "title": "《系统分析师考点精粹》",
     "description": "高频考点汇总",
-    "downloadUrl": "https://example.com/textbooks/4915-3.pdf",
+    "downloadUrl": "https://example.com/textbooks/490304-3.pdf",
     "fileSize": "12.5MB",
     "type": "pdf",
     "isHidden": false,
@@ -117,11 +117,11 @@
     "updatedAt": "2026-04-01T00:00:00.000Z"
   }
   {
-    "studyProjectId": 4915,
+    "studyProjectId": 490304,
     "textbookId": 4,
     "title": "《系统分析师案例分析》",
     "description": "案例分析专项突破",
-    "downloadUrl": "https://example.com/textbooks/4915-4.pdf",
+    "downloadUrl": "https://example.com/textbooks/490304-4.pdf",
     "fileSize": "28.7MB",
     "type": "pdf",
     "isHidden": false,

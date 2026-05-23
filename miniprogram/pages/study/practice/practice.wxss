@@ -9,6 +9,35 @@
   box-sizing: border-box;
 }
 
+/* 无题库提示 */
+.no-question-bank {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 60rpx 40rpx;
+}
+
+.no-question-icon {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+}
+
+.no-question-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #8B4513;
+  margin-bottom: 20rpx;
+}
+
+.no-question-desc {
+  font-size: 28rpx;
+  color: #666;
+  text-align: center;
+  line-height: 1.6;
+}
+
 /* 页面头部 */
 .page-header {
   display: flex;
